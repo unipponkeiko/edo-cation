@@ -395,34 +395,48 @@
   .reveal-d1 { transition-delay: 0.1s; }
   .reveal-d2 { transition-delay: 0.22s; }
   .reveal-d3 { transition-delay: 0.34s; }
- @media (max-width: 768px) {
+@media (max-width: 768px) {
+  #nav-brand {
+    font-size: 13px !important;
+  }
 
-  nav {
-    padding: 12px 20px;
+  .nav-cta {
+    font-size: 12px;
+    padding: 8px 18px;
   }
 
   .nav-links {
-    display: none;
+    order: 3;
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+    overflow-x: auto;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    white-space: nowrap;
   }
 
   #hero {
-    height: 80vh;
+    height: 88vh;
+    min-height: 620px;
+  }
+
+  .hero-bg {
+    background-position: 68% center;
   }
 
   .hero-content {
-    padding: 0 6vw;
-  }
-
-  .program-layout,
-  #vision,
-  #profile {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    padding: 0 8vw;
+    transform: translateY(40px);
   }
 
   .concept-grid,
   .projects-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   section {
