@@ -395,6 +395,41 @@
   .reveal-d1 { transition-delay: 0.1s; }
   .reveal-d2 { transition-delay: 0.22s; }
   .reveal-d3 { transition-delay: 0.34s; }
+ @media (max-width: 768px) {
+
+  nav {
+    padding: 12px 20px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  #hero {
+    height: 80vh;
+  }
+
+  .hero-content {
+    padding: 0 6vw;
+  }
+
+  .program-layout,
+  #vision,
+  #profile {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .concept-grid,
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 60px 6vw !important;
+  }
+
+}
 </style>
 </head>
 <body>
