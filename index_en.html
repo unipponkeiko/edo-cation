@@ -50,8 +50,6 @@
   :root {
     --ink:    #1a1612;
     --ivory:  #f5f3ef;
-    --cream:  #eeebe4;
-    --warm:   #3d2e1e;
     --gold:   #b8965a;
     --gold-lt:#d4b07a;
     --mist:   #8a8278;
@@ -59,466 +57,166 @@
   }
 
   html { scroll-behavior: smooth; overflow-x: hidden; }
+  body { font-family: 'Cormorant Garamond', serif; background: var(--ivory); color: var(--ink); overflow-x: hidden; }
 
-  body {
-    font-family: 'Cormorant Garamond', serif;
-    background: var(--ivory);
-    color: var(--ink);
-    overflow-x: hidden;
-  }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 40px;
-    transition: background 0.4s, padding 0.4s, border-color 0.4s;
-    gap: 16px;
-  }
-  nav.scrolled {
-    background: rgba(248,245,239,0.96);
-    backdrop-filter: blur(12px);
-    padding: 12px 40px;
-    border-bottom: 1px solid var(--sep);
-  }
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; transition: background 0.4s, padding 0.4s; gap: 16px; }
+  nav.scrolled { background: rgba(248,245,239,0.96); backdrop-filter: blur(12px); padding: 12px 40px; border-bottom: 1px solid var(--sep); }
   .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
-  .nav-links a {
-    text-decoration: none;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: rgba(255,255,255,0.85); transition: color 0.2s;
-  }
+  .nav-links a { text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.85); transition: color 0.2s; }
   nav.scrolled .nav-links a { color: var(--mist); }
   .nav-links a:hover { color: var(--gold); }
-  .nav-lang {
-    font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.15em;
-    color: rgba(255,255,255,0.5) !important; text-decoration: none; border: 1px solid rgba(255,255,255,0.2);
-    padding: 4px 10px; transition: all 0.2s;
-  }
+  .nav-lang { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.15em; color: rgba(255,255,255,0.5) !important; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); padding: 4px 10px; transition: all 0.2s; }
   nav.scrolled .nav-lang { color: var(--mist) !important; border-color: var(--sep); }
   .nav-lang:hover { color: var(--gold-lt) !important; border-color: var(--gold-lt); }
-  .nav-cta {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px; letter-spacing: 0.14em;
-    color: rgba(255,255,255,0.85);
-    border: 1px solid rgba(255,255,255,0.4);
-    padding: 9px 22px; text-decoration: none;
-    transition: all 0.25s; white-space: nowrap;
-  }
+  .nav-cta { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.14em; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.4); padding: 9px 22px; text-decoration: none; transition: all 0.25s; white-space: nowrap; }
   nav.scrolled .nav-cta { color: var(--ink); border-color: var(--sep); }
   .nav-cta:hover { border-color: var(--gold); color: var(--gold); }
 
-  /* ─── HAMBURGER ─── */
-  .nav-hamburger {
-    display: none;
-    flex-direction: column; gap: 5px;
-    cursor: pointer; padding: 4px; background: none; border: none;
-    z-index: 110;
-  }
-  .nav-hamburger span {
-    display: block; width: 24px; height: 1.5px;
-    background: rgba(255,255,255,0.85);
-    transition: all 0.3s;
-  }
+  /* HAMBURGER */
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; z-index: 110; }
+  .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: rgba(255,255,255,0.85); transition: all 0.3s; }
   nav.scrolled .nav-hamburger span { background: var(--ink); }
   .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
   .nav-hamburger.open span:nth-child(2) { opacity: 0; }
   .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-  /* ─── MOBILE MENU ─── */
-  .mobile-menu {
-    display: none;
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(26,22,18,0.97);
-    z-index: 105;
-    flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 36px;
-  }
+  /* MOBILE MENU */
+  .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(26,22,18,0.97); z-index: 105; flex-direction: column; align-items: center; justify-content: center; gap: 36px; }
   .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; letter-spacing: 0.3em; text-transform: uppercase;
-    color: rgba(255,255,255,0.85); text-decoration: none;
-    transition: color 0.2s;
-  }
+  .mobile-menu a { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.2s; }
   .mobile-menu a:hover { color: var(--gold); }
-  .mobile-menu .mobile-cta {
-    margin-top: 16px;
-    font-size: 14px; letter-spacing: 0.2em;
-    border: 1px solid rgba(255,255,255,0.3);
-    padding: 14px 40px; color: rgba(255,255,255,0.85) !important;
-  }
-  .mobile-menu .mobile-lang {
-    font-size: 13px; letter-spacing: 0.2em;
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 8px 20px; color: rgba(255,255,255,0.4) !important;
-  }
+  .mobile-menu .mobile-lang { font-size: 13px; border: 1px solid rgba(255,255,255,0.2); padding: 8px 20px; color: rgba(255,255,255,0.4) !important; }
 
-  /* ─── HERO ─── */
-  #hero {
-    position: relative; height: 100svh; min-height: 600px;
-    display: flex; align-items: center; justify-content: flex-start;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: url('uploads/img_home.png') center/cover no-repeat;
-    background-color: #1a1008;
-  }
-  .hero-bg::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(
-      to right,
-      rgba(20,14,8,0.60) 0%,
-      rgba(20,14,8,0.20) 65%,
-      rgba(20,14,8,0.05) 100%
-    );
-  }
-  .hero-content {
-    position: relative; z-index: 2;
-    padding: 0 10vw;
-    max-width: 640px;
-    align-self: center;
-    margin-right: auto;
-  }
-  .hero-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(26px, 5vw, 38px);
-    font-weight: 400; letter-spacing: 0.25em;
-    color: #fff; margin-bottom: 20px;
-  }
-  .hero-tagline {
-    font-size: clamp(14px, 3vw, 17px); letter-spacing: 0.22em;
-    color: rgba(255,255,255,0.78);
-    line-height: 2; font-weight: 300; margin-bottom: 20px;
-    white-space: nowrap;
-  }
-  .hero-produced {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 11px; letter-spacing: 0.28em;
-    color: rgba(255,255,255,0.42);
-  }
-  .hero-scroll {
-    position: absolute; bottom: 36px; left: 10vw; z-index: 2;
-    display: flex; align-items: center; gap: 16px;
-  }
-  .scroll-line {
-    width: 48px; height: 1px;
-    background: linear-gradient(to right, rgba(255,255,255,0.6), transparent);
-    animation: scrollPulse 2.2s ease-in-out infinite;
-  }
-  @keyframes scrollPulse {
-    0%,100% { transform: scaleX(1); opacity: 0.5; }
-    50% { transform: scaleX(1.3); opacity: 1; }
-  }
-  .scroll-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 11px; letter-spacing: 0.3em;
-    color: rgba(255,255,255,0.45); text-transform: uppercase;
-  }
+  /* HERO */
+  #hero { position: relative; height: 100svh; min-height: 600px; display: flex; align-items: center; justify-content: flex-start; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: url('uploads/img_home.png') center/cover no-repeat; background-color: #1a1008; }
+  .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(20,14,8,0.60) 0%, rgba(20,14,8,0.20) 65%, rgba(20,14,8,0.05) 100%); }
+  .hero-content { position: relative; z-index: 2; padding: 0 10vw; max-width: 640px; align-self: center; margin-right: auto; }
+  .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 5vw, 38px); font-weight: 400; letter-spacing: 0.25em; color: #fff; margin-bottom: 20px; }
+  .hero-tagline { font-size: clamp(14px, 3vw, 17px); letter-spacing: 0.22em; color: rgba(255,255,255,0.78); line-height: 2; font-weight: 300; margin-bottom: 20px; }
+  .hero-produced { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.28em; color: rgba(255,255,255,0.42); }
+  .hero-scroll { position: absolute; bottom: 36px; left: 10vw; z-index: 2; display: flex; align-items: center; gap: 16px; }
+  .scroll-line { width: 48px; height: 1px; background: linear-gradient(to right, rgba(255,255,255,0.6), transparent); animation: scrollPulse 2.2s ease-in-out infinite; }
+  @keyframes scrollPulse { 0%,100% { transform: scaleX(1); opacity: 0.5; } 50% { transform: scaleX(1.3); opacity: 1; } }
+  .scroll-label { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.3em; color: rgba(255,255,255,0.45); text-transform: uppercase; }
 
-  /* ─── SECTION COMMONS ─── */
-  .section-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px; font-weight: 300; letter-spacing: 0.15em;
-    color: var(--ink); margin-bottom: 40px;
-  }
+  /* COMMONS */
+  .section-label { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 300; letter-spacing: 0.2em; color: var(--ink); margin-bottom: 56px; }
   .gold-rule { width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
 
-  /* ─── BRAND ─── */
-  #brand {
-    background: #fff;
-    padding: 80px 10vw;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-  }
-  .brand-text .section-label { margin-bottom: 32px; }
-  .brand-equation-row {
-    display: flex; flex-direction: column; align-items: center; gap: 40px;
-  }
-  .brand-equation {
-    font-size: clamp(16px, 3vw, 30px);
-    font-weight: 300; letter-spacing: 0.15em;
-    color: var(--ink); line-height: 1.5;
-  }
-  .brand-logo-illust {
-    height: 160px; width: auto;
-    opacity: 0.9; display: block; margin: 0 auto;
-  }
+  /* BRAND */
+  #brand { background: #fff; padding: 120px 10vw; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .brand-text .section-label { margin-bottom: 48px; }
+  .brand-equation-row { display: flex; flex-direction: column; align-items: center; gap: 56px; }
+  .brand-equation { font-size: clamp(16px, 3vw, 28px); font-weight: 300; letter-spacing: 0.15em; color: var(--ink); line-height: 1.5; }
+  .brand-logo-illust { height: 160px; width: auto; opacity: 0.9; display: block; margin: 0 auto; }
 
-  /* ─── CONCEPT ─── */
-  #concept { background: #fff; padding: 80px 10vw; }
-  .concept-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
-    margin-top: 8px;
-  }
-  .concept-card { display: flex; flex-direction: column; }
-  .concept-img-wrap {
-    width: 100%; aspect-ratio: 4/3; overflow: hidden; margin-bottom: 28px;
-  }
-  .concept-img-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.7s ease;
-  }
-  .concept-card:hover .concept-img-wrap img { transform: scale(1.05); }
-  .concept-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px; letter-spacing: 0.3em; color: var(--gold);
-    margin-bottom: 12px;
-  }
-  .concept-card-title {
-    font-size: 17px; letter-spacing: 0.1em;
-    color: var(--ink); margin-bottom: 16px;
-    font-weight: 400; line-height: 1.5;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--sep);
-  }
-  .concept-card-body {
-    font-size: 15px; line-height: 2.2;
-    color: #5a5248; font-weight: 300;
-    flex: 1;
-  }
+  /* CONCEPT — 写真なし */
+  #concept { background: #fff; padding: 120px 10vw; }
+  .concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+  .concept-card { display: flex; flex-direction: column; padding-top: 8px; }
+  .concept-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; font-style: italic; color: var(--gold); margin-bottom: 28px; line-height: 1; letter-spacing: 0.02em; }
+  .concept-card-title { font-size: 18px; letter-spacing: 0.06em; color: var(--ink); margin-bottom: 20px; font-weight: 400; line-height: 1.5; padding-bottom: 20px; border-bottom: 1px solid var(--sep); }
+  .concept-card-body { font-size: 16px; line-height: 2.4; color: #5a5248; font-weight: 300; flex: 1; }
 
-  /* ─── PROGRAM ─── */
-  #program { background: #fff; padding: 80px 10vw; }
-  .program-layout {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start;
-  }
-  .program-text .section-label { margin-bottom: 28px; }
-  .program-heading {
-    font-size: 20px; letter-spacing: 0.12em; font-weight: 400;
-    color: var(--ink); margin-bottom: 18px;
-  }
-  .program-copy {
-    font-size: 16px; line-height: 2.4; color: #4a4540;
-    font-weight: 300; margin-bottom: 12px;
-  }
-  .program-note {
-    font-size: 13px; letter-spacing: 0.1em; color: var(--mist);
-    margin-top: 20px; font-style: italic;
-  }
+  /* PROGRAM */
+  #program { background: #fff; padding: 120px 10vw; }
+  .program-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .program-text .section-label { margin-bottom: 32px; }
+  .program-heading { font-family: 'Cormorant Garamond', serif; font-size: 24px; letter-spacing: 0.12em; font-weight: 300; font-style: italic; color: var(--ink); margin-bottom: 28px; }
+  .program-copy { font-size: 17px; line-height: 2.5; color: #4a4540; font-weight: 300; }
   .program-right { display: flex; flex-direction: column; gap: 8px; }
   .program-main-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
   .program-sub-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .program-sub-imgs img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
 
-  /* ─── SELECTED PROJECTS ─── */
-  #projects { background: #fff; padding: 80px 10vw; }
-  .projects-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
-    margin-top: 8px;
-  }
+  /* PROJECTS */
+  #projects { background: #fff; padding: 120px 10vw; }
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
   .project-card { display: flex; flex-direction: column; }
-  .project-img {
-    width: 100%; aspect-ratio: 4/3; object-fit: cover;
-    margin-bottom: 20px;
-  }
-  .project-date {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 12px; letter-spacing: 0.25em; color: var(--gold);
-    margin-bottom: 10px;
-  }
-  .project-title {
-    font-size: 17px; letter-spacing: 0.08em;
-    color: var(--ink); margin-bottom: 14px; font-weight: 400;
-    padding-bottom: 14px; border-bottom: 1px solid var(--sep);
-  }
-  .project-body {
-    font-size: 15px; line-height: 2.2; color: #5a5248;
-    font-weight: 300;
-  }
+  .project-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; margin-bottom: 24px; }
+  .project-date { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 12px; }
+  .project-title { font-size: 17px; letter-spacing: 0.05em; color: var(--ink); margin-bottom: 16px; font-weight: 400; padding-bottom: 16px; border-bottom: 1px solid var(--sep); }
+  .project-body { font-size: 15px; line-height: 2.3; color: #5a5248; font-weight: 300; }
 
-  /* ─── VISION ─── */
-  #vision {
-    background: #fff;
-    padding: 80px 10vw;
-    display: flex; flex-direction: column;
-    align-items: center; gap: 40px;
-    text-align: center;
-  }
-  .vision-logo-wrap { display: flex; align-items: center; justify-content: center; }
+  /* VISION */
+  #vision { background: #fff; padding: 120px 10vw; display: flex; flex-direction: column; align-items: center; gap: 56px; text-align: center; }
   .vision-logo { max-width: 100%; max-height: 420px; }
-  .vision-text .section-label { margin-bottom: 36px; }
-  .vision-en {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(15px, 1.8vw, 20px);
-    font-weight: 300; font-style: italic;
-    color: var(--ink); letter-spacing: 0.04em; line-height: 2.2;
-  }
+  .vision-en { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 1.8vw, 22px); font-weight: 300; font-style: italic; color: var(--ink); letter-spacing: 0.04em; line-height: 2.4; display: block; }
 
-  /* ─── PROFILE ─── */
-  #profile {
-    background: #fff;
-    padding: 80px 10vw;
-    display: grid; grid-template-columns: 340px 1fr;
-    gap: 72px; align-items: start;
-  }
-  .profile-img {
-    width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top;
-  }
-  .profile-org {
-    font-size: 13px; letter-spacing: 0.15em; color: var(--mist);
-    margin-bottom: 14px; font-weight: 300;
-  }
-  .profile-name {
-    font-size: clamp(26px, 3.5vw, 40px);
-    font-weight: 300; letter-spacing: 0.2em; color: var(--ink);
-    margin-bottom: 4px;
-  }
-  .profile-name-en {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px; letter-spacing: 0.25em; font-style: italic;
-    color: var(--mist); margin-bottom: 40px;
-  }
-  .profile-bio {
-    font-size: 16px; line-height: 2.5; color: #4a4540;
-    font-weight: 300;
-    border-left: 2px solid var(--gold); padding-left: 24px;
-  }
-  .profile-affil {
-    margin-top: 28px; font-size: 13px; letter-spacing: 0.1em;
-    color: var(--mist); line-height: 2.2; font-style: italic;
-  }
+  /* PROFILE */
+  #profile { background: #fff; padding: 120px 10vw; display: grid; grid-template-columns: 320px 1fr; gap: 80px; align-items: start; }
+  .profile-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; }
+  .profile-org { font-size: 13px; letter-spacing: 0.15em; color: var(--mist); margin-bottom: 14px; font-weight: 300; }
+  .profile-name { font-size: clamp(26px, 3.5vw, 40px); font-weight: 300; letter-spacing: 0.2em; color: var(--ink); margin-bottom: 4px; font-family: 'Noto Serif JP', serif; }
+  .profile-name-en { font-family: 'Cormorant Garamond', serif; font-size: 16px; letter-spacing: 0.25em; font-style: italic; color: var(--mist); margin-bottom: 48px; }
+  .profile-bio { font-size: 17px; line-height: 2.6; color: #4a4540; font-weight: 300; border-left: 1px solid var(--gold); padding-left: 28px; }
+  .profile-affil { margin-top: 32px; font-size: 14px; letter-spacing: 0.1em; color: var(--mist); line-height: 2.2; font-style: italic; }
 
-  /* ─── CONTACT ─── */
-  #contact { background: #fff; padding: 80px 10vw; }
+  /* CONTACT */
+  #contact { background: #fff; padding: 120px 10vw; }
   .contact-inner { max-width: 640px; }
-  .contact-intro {
-    font-size: 16px; line-height: 2.5; color: #5a5248;
-    font-weight: 300; margin-bottom: 48px;
-  }
-  .contact-form { display: flex; flex-direction: column; gap: 16px; }
-  .form-submit {
-    display: inline-block;
-    margin-top: 8px; background: transparent;
-    border: 1px solid var(--ink);
-    color: var(--ink);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14px; letter-spacing: 0.3em; text-transform: uppercase;
-    padding: 18px 56px; cursor: pointer;
-    transition: all 0.3s; text-decoration: none;
-  }
+  .contact-intro { font-size: 17px; line-height: 2.5; color: #5a5248; font-weight: 300; margin-bottom: 56px; }
+  .form-submit { display: inline-block; background: transparent; border: 1px solid var(--ink); color: var(--ink); font-family: 'Cormorant Garamond', serif; font-size: 14px; letter-spacing: 0.3em; text-transform: uppercase; padding: 20px 64px; cursor: pointer; transition: all 0.3s; text-decoration: none; }
   .form-submit:hover { background: var(--ink); color: var(--ivory); }
 
-  /* ─── FOOTER ─── */
-  footer {
-    background: #fff;
-    padding: 48px 10vw;
-    display: flex; justify-content: space-between; align-items: center;
-    border-top: 1px solid var(--sep);
-    gap: 24px; flex-wrap: wrap;
-  }
+  /* FOOTER */
+  footer { background: #fff; padding: 56px 10vw; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--sep); gap: 24px; flex-wrap: wrap; }
   .footer-logo { height: 80px; filter: brightness(0); opacity: 0.75; }
-  .footer-copy {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 11px; letter-spacing: 0.2em; color: var(--mist);
-  }
-  .footer-produced {
-    font-size: 10px; letter-spacing: 0.2em;
-    color: var(--mist); text-align: right; line-height: 1.8;
-  }
+  .footer-copy { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.2em; color: var(--mist); }
+  .footer-produced { font-size: 10px; letter-spacing: 0.2em; color: var(--mist); text-align: right; line-height: 1.8; }
 
-  /* ─── REVEAL ─── */
+  /* REVEAL */
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.85s ease, transform 0.85s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
   .reveal-d1 { transition-delay: 0.1s; }
   .reveal-d2 { transition-delay: 0.22s; }
   .reveal-d3 { transition-delay: 0.34s; }
 
-  /* ═══════════════════════════════════════
-     MOBILE STYLES  (max-width: 768px)
-  ═══════════════════════════════════════ */
+  /* MOBILE */
   @media (max-width: 768px) {
-
-    /* NAV */
     nav { padding: 16px 20px; }
     nav.scrolled { padding: 12px 20px; }
     #nav-brand { font-size: 13px !important; }
     .nav-links { display: none; }
     .nav-cta { display: none; }
     .nav-hamburger { display: flex; }
-
-    /* HERO */
     #hero { height: 100svh; min-height: 580px; }
     .hero-bg { background-position: 75% center; }
     .hero-sub { display: none; }
-    .hero-content {
-      padding: 0 7vw;
-      max-width: 100%;
-      width: 100%;
-      position: absolute;
-      bottom: 100px;
-      left: 0;
-    }
-    .hero-tagline {
-      font-size: 13px; letter-spacing: 0.15em;
-      margin-bottom: 16px; line-height: 2.2;
-      color: rgba(255,255,255,0.85);
-      white-space: nowrap;
-    }
-    .hero-produced {
-      font-size: 10px; letter-spacing: 0.22em;
-      color: rgba(255,255,255,0.45); line-height: 1.8;
-    }
+    .hero-content { padding: 0 7vw; max-width: 100%; width: 100%; position: absolute; bottom: 100px; left: 0; }
+    .hero-tagline { font-size: 13px; letter-spacing: 0.15em; margin-bottom: 16px; line-height: 2.2; color: rgba(255,255,255,0.85); }
+    .hero-produced { font-size: 10px; letter-spacing: 0.22em; color: rgba(255,255,255,0.45); line-height: 1.8; }
     .hero-scroll { left: 7vw; bottom: 36px; }
-
-    /* SECTIONS */
-    #brand, #concept, #program, #projects, #vision, #profile, #contact {
-      padding: 60px 6vw;
-    }
-    .section-label { font-size: 22px; margin-bottom: 32px; }
-
-    /* BRAND */
-    .brand-equation-row { flex-direction: column; gap: 32px; align-items: center; }
-    .brand-equation { font-size: 14px; white-space: normal; text-align: center; }
-    .brand-logo-illust { height: 140px; margin: 0 auto; display: block; }
-
-    /* CONCEPT */
-    .concept-grid { grid-template-columns: 1fr; gap: 40px; }
-    .concept-card-body { line-height: 2.2; }
-
-    /* PROGRAM */
-    .program-layout { grid-template-columns: 1fr; gap: 40px; }
-    .program-copy { line-height: 2.4; }
-
-    /* PROJECTS */
-    .projects-grid { grid-template-columns: 1fr; gap: 40px; }
-
-    /* VISION */
-    #vision { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-    .vision-logo-wrap { order: 2; }
-    .vision-text { order: 1; text-align: center; }
-    .vision-logo { max-height: 240px; }
+    #brand, #concept, #program, #projects, #vision, #profile, #contact { padding: 72px 6vw; }
+    .section-label { font-size: 26px; margin-bottom: 40px; }
+    .brand-equation { font-size: 14px; text-align: center; }
+    .brand-logo-illust { height: 140px; }
+    .concept-grid { grid-template-columns: 1fr; gap: 48px; }
+    .concept-num { font-size: 32px; }
+    .concept-card-title { font-size: 16px; }
+    .concept-card-body { font-size: 15px; }
+    .program-layout { grid-template-columns: 1fr; gap: 48px; }
+    .program-copy { font-size: 15px; }
+    .projects-grid { grid-template-columns: 1fr; gap: 48px; }
+    .project-title { font-size: 16px; }
+    .project-body { font-size: 14px; }
+    #vision { gap: 40px; }
+    .vision-logo { max-height: 220px; }
     .vision-en { font-size: 15px; }
-    #vision .section-label { text-align: center; }
-
-    /* PROFILE */
-    #profile { grid-template-columns: 1fr; gap: 36px; }
-    .profile-img {
-      width: 72%; max-width: 280px;
-      aspect-ratio: 3/4; margin: 0 auto;
-      display: block;
-    }
+    #profile { grid-template-columns: 1fr; gap: 40px; }
+    .profile-img { width: 72%; max-width: 280px; margin: 0 auto; display: block; }
     .profile-name { font-size: 28px; }
-    .profile-name-en { margin-bottom: 28px; }
-    .profile-bio { font-size: 15px; line-height: 2.4; padding-left: 16px; }
-
-    /* CONTACT */
-    .form-submit { width: 100%; text-align: center; padding: 16px 32px; }
-
-    /* FOOTER */
-    footer {
-      flex-direction: column; align-items: flex-start;
-      gap: 16px; padding: 40px 6vw;
-    }
+    .profile-name-en { margin-bottom: 32px; }
+    .profile-bio { font-size: 15px; line-height: 2.4; padding-left: 20px; }
+    .contact-intro { font-size: 15px; }
+    .form-submit { width: 100%; text-align: center; padding: 18px 32px; }
+    footer { flex-direction: column; align-items: flex-start; gap: 16px; padding: 48px 6vw; }
     .footer-produced { text-align: left; }
   }
-
   @media (max-width: 380px) {
-    .section-label { font-size: 20px; }
+    .section-label { font-size: 22px; }
     .brand-equation { font-size: 13px; }
     .profile-img { width: 85%; }
   }
@@ -526,7 +224,6 @@
 </head>
 <body>
 
-<!-- MOBILE MENU OVERLAY -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#brand" class="mobile-nav-link">Brand</a>
   <a href="#concept" class="mobile-nav-link">Concept</a>
@@ -538,7 +235,6 @@
   <a href="index.html" class="mobile-nav-link mobile-lang">JP</a>
 </div>
 
-<!-- NAV -->
 <nav id="nav">
   <a href="#" id="nav-brand" style="font-family:'Cormorant Garamond',serif; font-size:14px; font-weight:400; letter-spacing:0.22em; color:rgba(255,255,255,0.92); text-decoration:none; transition:color 0.3s; white-space:nowrap;">Edo<span style="font-family:'Noto Serif JP',serif; font-weight:300;">-</span>cation</a>
   <ul class="nav-links">
@@ -554,7 +250,6 @@
   </button>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
@@ -570,7 +265,6 @@
 
 <div class="gold-rule"></div>
 
-<!-- BRAND -->
 <section id="brand">
   <div class="brand-text reveal">
     <p class="section-label">Brand</p>
@@ -583,31 +277,21 @@
 
 <div class="gold-rule"></div>
 
-<!-- CONCEPT -->
 <section id="concept">
   <p class="section-label reveal">Concept</p>
   <div class="concept-grid">
     <div class="concept-card reveal reveal-d1">
-      <div class="concept-img-wrap">
-        <img src="uploads/2.png" alt="Ukiyo-e" style="object-position: center top;">
-      </div>
       <p class="concept-num">01</p>
       <h3 class="concept-card-title">A Gentle Entry into Edo</h3>
       <p class="concept-card-body">Customised workshops and events demystify Edo culture — dissolving the distance between modern life and centuries-old tradition, making it deeply personal and alive.</p>
     </div>
     <div class="concept-card reveal reveal-d2">
-      <div class="concept-img-wrap">
-        <img src="uploads/1.png" alt="Traditional makeup" style="object-position: center top;">
-      </div>
       <p class="concept-num">02</p>
       <h3 class="concept-card-title">Carried by Hand</h3>
       <p class="concept-card-body">Japanese culture has been passed down through oral tradition. Here, you hear directly from the living bearers of Edo's arts — not from textbooks.</p>
-      <p style="margin-top:16px; font-size:14px; letter-spacing:0.1em;"><a href="https://youtu.be/sfbS5Ghsp34?si=AffOQGlabF8iKRx-" target="_blank" style="color:var(--gold); text-decoration:underline;">Watch the video</a></p>
+      <p style="margin-top:20px; font-size:14px; letter-spacing:0.1em;"><a href="https://youtu.be/sfbS5Ghsp34?si=AffOQGlabF8iKRx-" target="_blank" style="color:var(--gold); text-decoration:underline;">Watch the video</a></p>
     </div>
     <div class="concept-card reveal reveal-d3">
-      <div class="concept-img-wrap">
-        <img src="uploads/img_kimono.jpg" alt="Kimono">
-      </div>
       <p class="concept-num">03</p>
       <h3 class="concept-card-title">Beyond the Visible</h3>
       <p class="concept-card-body">Through hands-on workshops, you engage all five senses in a truly immersive encounter with Edo culture.</p>
@@ -617,15 +301,12 @@
 
 <div class="gold-rule"></div>
 
-<!-- PROGRAM -->
 <section id="program">
   <div class="program-layout">
     <div class="program-text reveal">
       <p class="section-label">Program</p>
       <h3 class="program-heading">Unique Elegance</h3>
-      <p class="program-copy">
-        When we create a gathering, what matters most is creating something truly unique, yet deeply elegant. We bring together the arts of <em>Nihon Buyo</em> classical dance, <em>Ukiyo-e</em> woodblock printing, tea ceremony, and <em>Rakugo</em> storytelling — weaving them into singular, once-in-a-lifetime experiences that gently guide the spirit toward the essence of Japanese culture.
-      </p>
+      <p class="program-copy">When we create a gathering, what matters most is creating something truly unique, yet deeply elegant. We bring together the arts of <em>Nihon Buyo</em> classical dance, <em>Ukiyo-e</em> woodblock printing, tea ceremony, and <em>Rakugo</em> storytelling — weaving them into singular, once-in-a-lifetime experiences that gently guide the spirit toward the essence of Japanese culture.</p>
     </div>
     <div class="program-right reveal reveal-d1">
       <img src="uploads/a.png" alt="Performance" class="program-main-img" style="object-position: center top;">
@@ -639,7 +320,6 @@
 
 <div class="gold-rule"></div>
 
-<!-- SELECTED PROJECTS -->
 <section id="projects">
   <p class="section-label reveal">Selected Projects</p>
   <div class="projects-grid">
@@ -666,13 +346,12 @@
 
 <div class="gold-rule"></div>
 
-<!-- VISION -->
 <section id="vision">
   <p class="section-label reveal" style="text-align:center;">Our Vision</p>
-  <div class="vision-logo-wrap reveal">
+  <div class="reveal">
     <img src="uploads/aaa2.png" alt="Utsukushii Nippon" class="vision-logo">
   </div>
-  <p class="vision-en reveal reveal-d2" style="text-align:center; display:block;">
+  <p class="vision-en reveal reveal-d2" style="text-align:center;">
     "We want to invite you to unveil<br>
     the depth and beauty of Japanese culture,<br>
     connect with its spirituality<br>
@@ -683,13 +362,13 @@
 
 <div class="gold-rule"></div>
 
-<!-- PROFILE -->
 <section id="profile">
   <img src="uploads/img_profile.jpg" alt="Keiko Yamamoto" class="profile-img reveal">
   <div class="reveal reveal-d1">
     <p class="profile-org">Founder, Utsukushii Nippon</p>
-    <h2 class="profile-name">山本　桂子　<span style="font-family:'Cormorant Garamond',serif; font-size:0.6em; letter-spacing:0.2em; font-style:italic;">Keiko Yamamoto</span></h2>
-    <p class="profile-org" style="margin-bottom:32px; letter-spacing:0.15em; font-style:italic;">Cultural Relationship Developer</p>
+    <h2 class="profile-name">山本　桂子</h2>
+    <p class="profile-name-en" style="margin-bottom:8px;">Keiko Yamamoto</p>
+    <p class="profile-org" style="margin-bottom:40px; letter-spacing:0.15em; font-style:italic;">Cultural Relationship Developer</p>
     <p class="profile-bio">
       A graduate of Waseda University, Keiko began studying Nihon Buyo classical Japanese dance at age eight under Wakana Isanami, and later trained under the fourth Iemoto of the Wakana school, Wakana Isaburo. She obtained her teaching licence in 2018 and leads a dance studio in Tokyo's Taito ward.<br><br>
       Combining a lifetime of practice in Nihon Buyo with a deep knowledge of Japanese culture — producing cultural events and workshops that bring Edo's living arts to international audiences.
@@ -703,22 +382,16 @@
 
 <div class="gold-rule"></div>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="contact-inner">
     <p class="section-label reveal">Contact</p>
-    <p class="contact-intro reveal">
-      For enquiries about events, workshops, press, or collaborations, please reach out via the form below.
-    </p>
-    <div class="contact-form reveal">
-      <a href="https://forms.gle/3B2RJUY4oDCR17Mc9" target="_blank" class="form-submit">
-        Contact Form
-      </a>
+    <p class="contact-intro reveal">For enquiries about events, workshops, press, or collaborations, please reach out via the form below.</p>
+    <div class="reveal">
+      <a href="https://forms.gle/3B2RJUY4oDCR17Mc9" target="_blank" class="form-submit">Contact Form</a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <img src="uploads/img_logo.png" alt="Edo-cation" class="footer-logo">
   <p class="footer-copy">© 2026 Edo-cation. All rights reserved.</p>
@@ -733,16 +406,13 @@
     nav.classList.toggle('scrolled', scrolled);
     navBrand.style.color = scrolled ? 'var(--ink)' : 'rgba(255,255,255,0.92)';
   });
-
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-
   hamburger.addEventListener('click', () => {
     const open = mobileMenu.classList.toggle('open');
     hamburger.classList.toggle('open', open);
     document.body.style.overflow = open ? 'hidden' : '';
   });
-
   mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       mobileMenu.classList.remove('open');
@@ -750,7 +420,6 @@
       document.body.style.overflow = '';
     });
   });
-
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
