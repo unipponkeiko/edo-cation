@@ -21,7 +21,7 @@
     --sep:    rgba(138,130,120,0.2);
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
 
   body {
     font-family: 'Noto Serif JP', serif;
@@ -194,11 +194,12 @@
     background: #fff;
     padding: 80px 10vw;
     display: flex; flex-direction: column;
-    align-items: flex-start; justify-content: center;
+    align-items: center; justify-content: center;
+    text-align: center;
   }
   .brand-text .section-label { margin-bottom: 32px; }
   .brand-equation-row {
-    display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+    display: flex; flex-direction: column; align-items: center; gap: 40px;
   }
   .brand-equation {
     font-size: clamp(16px, 3vw, 30px);
@@ -207,7 +208,7 @@
   }
   .brand-logo-illust {
     height: 160px; width: auto;
-    opacity: 0.9; display: block;
+    opacity: 0.9; display: block; margin: 0 auto;
   }
 
   /* ─── CONCEPT ─── */
@@ -460,9 +461,9 @@
     .section-label { font-size: 22px; margin-bottom: 32px; }
 
     /* BRAND */
-    .brand-equation-row { flex-direction: column; gap: 24px; align-items: flex-start; }
-    .brand-equation { font-size: 15px; white-space: normal; }
-    .brand-logo-illust { height: 120px; }
+    .brand-equation-row { flex-direction: column; gap: 32px; align-items: center; }
+    .brand-equation { font-size: 14px; white-space: normal; text-align: center; }
+    .brand-logo-illust { height: 140px; margin: 0 auto; display: block; }
     .brand-equation::after { content: '江戸ケーション'; }
 
     /* CONCEPT */
@@ -566,7 +567,7 @@
   <div class="brand-text reveal">
     <p class="section-label">Brand</p>
     <div class="brand-equation-row">
-      <p class="brand-equation">江戸文化　×　教育（学び）　＝</p>
+      <p class="brand-equation">江戸文化　×　教育（学び）　＝　江戸ケーション</p>
       <img src="uploads/img_logo.png" alt="江戸ケーション" class="brand-logo-illust reveal reveal-d2">
     </div>
   </div>
