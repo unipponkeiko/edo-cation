@@ -7,571 +7,497 @@
 <meta name="description" content="Edo-cation is a cultural experience program produced by utsukushii nippon, offering Japanese dance, ukiyo-e, tea ceremony, rakugo, and bespoke cultural events.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --ink: #1a1612;
-    --ivory: #f5f3ef;
-    --gold: #b8965a;
-    --gold-lt: #d4b07a;
-    --mist: #8a8278;
-    --sep: rgba(138,130,120,0.2);
+    --ink:    #1a1612;
+    --ivory:  #f5f3ef;
+    --cream:  #eeebe4;
+    --warm:   #3d2e1e;
+    --gold:   #b8965a;
+    --gold-lt:#d4b07a;
+    --mist:   #8a8278;
+    --sep:    rgba(138,130,120,0.2);
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
 
   body {
     font-family: 'Cormorant Garamond', serif;
-    background: #fff;
+    background: var(--ivory);
     color: var(--ink);
     overflow-x: hidden;
   }
 
+  /* ─── NAV ─── */
   nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 56px;
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 40px;
     transition: background 0.4s, padding 0.4s, border-color 0.4s;
+    gap: 16px;
   }
-
   nav.scrolled {
     background: rgba(248,245,239,0.96);
     backdrop-filter: blur(12px);
-    padding: 14px 56px;
+    padding: 12px 40px;
     border-bottom: 1px solid var(--sep);
   }
-
-  #nav-brand {
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.22em;
-    color: rgba(255,255,255,0.92);
-    text-decoration: none;
-    transition: color 0.3s;
-    white-space: nowrap;
-  }
-
-  nav.scrolled #nav-brand { color: var(--ink); }
-
-  .nav-links {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-    align-items: center;
-  }
-
+  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
   .nav-links a {
     text-decoration: none;
-    font-size: 13px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
-    transition: color 0.2s;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.85); transition: color 0.2s;
   }
-
   nav.scrolled .nav-links a { color: var(--mist); }
   .nav-links a:hover { color: var(--gold); }
-
   .nav-lang {
-    font-size: 12px;
-    letter-spacing: 0.15em;
-    color: rgba(255,255,255,0.5);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 4px 10px;
+    font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.5) !important; text-decoration: none; border: 1px solid rgba(255,255,255,0.2);
+    padding: 4px 10px; transition: all 0.2s;
   }
-
+  nav.scrolled .nav-lang { color: var(--mist) !important; border-color: var(--sep); }
+  .nav-lang:hover { color: var(--gold-lt) !important; border-color: var(--gold-lt); }
   .nav-cta {
-    font-size: 13px;
-    letter-spacing: 0.14em;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; letter-spacing: 0.14em;
     color: rgba(255,255,255,0.85);
     border: 1px solid rgba(255,255,255,0.4);
-    padding: 9px 22px;
-    text-decoration: none;
-    transition: all 0.25s;
+    padding: 9px 22px; text-decoration: none;
+    transition: all 0.25s; white-space: nowrap;
+  }
+  nav.scrolled .nav-cta { color: var(--ink); border-color: var(--sep); }
+  .nav-cta:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ─── HAMBURGER ─── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 4px; background: none; border: none;
+    z-index: 110;
+  }
+  .nav-hamburger span {
+    display: block; width: 24px; height: 1.5px;
+    background: rgba(255,255,255,0.85);
+    transition: all 0.3s;
+  }
+  nav.scrolled .nav-hamburger span { background: var(--ink); }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ─── MOBILE MENU ─── */
+  .mobile-menu {
+    display: none;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(26,22,18,0.97);
+    z-index: 105;
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 36px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--gold); }
+  .mobile-menu .mobile-cta {
+    margin-top: 16px;
+    font-size: 14px; letter-spacing: 0.2em;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 14px 40px; color: rgba(255,255,255,0.85) !important;
+  }
+  .mobile-menu .mobile-lang {
+    font-size: 13px; letter-spacing: 0.2em;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 20px; color: rgba(255,255,255,0.4) !important;
   }
 
-  nav.scrolled .nav-cta {
-    color: var(--ink);
-    border-color: var(--sep);
-  }
-
-  .nav-cta:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-  }
-
+  /* ─── HERO ─── */
   #hero {
-    position: relative;
-    height: 100vh;
-    min-height: 640px;
-    display: flex;
-    align-items: center;
+    position: relative; height: 100svh; min-height: 600px;
+    display: flex; align-items: center; justify-content: flex-start;
     overflow: hidden;
   }
-
   .hero-bg {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background: url('uploads/img_home.png') center/cover no-repeat;
     background-color: #1a1008;
   }
-
   .hero-bg::after {
     content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, rgba(20,14,8,0.55) 0%, rgba(20,14,8,0.15) 65%, rgba(20,14,8,0) 100%);
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(20,14,8,0.60) 0%,
+      rgba(20,14,8,0.20) 65%,
+      rgba(20,14,8,0.05) 100%
+    );
   }
-
   .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 0 8vw;
-    max-width: 980px;
+    position: relative; z-index: 2;
+    padding: 0 10vw;
+    max-width: 640px;
+    align-self: center;
+    margin-right: auto;
   }
-
   .hero-sub {
-    font-size: clamp(22px, 3vw, 38px);
-    font-weight: 400;
-    letter-spacing: 0.25em;
-    color: #fff;
-    margin-bottom: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 400; letter-spacing: 0.25em;
+    color: #fff; margin-bottom: 20px;
   }
-
   .hero-tagline {
-    font-size: clamp(13px, 1.5vw, 17px);
-    letter-spacing: 0.22em;
+    font-size: clamp(14px, 3vw, 17px); letter-spacing: 0.22em;
     color: rgba(255,255,255,0.78);
-    line-height: 2;
-    font-weight: 300;
-    margin-bottom: 20px;
+    line-height: 2; font-weight: 300; margin-bottom: 20px;
   }
-
   .hero-produced {
-    font-style: normal;
-    letter-spacing: 0.28em;
-    font-size: 11px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px; letter-spacing: 0.28em;
     color: rgba(255,255,255,0.42);
-    opacity: 0.45;
   }
-
   .hero-scroll {
-    position: absolute;
-    bottom: 36px;
-    left: 8vw;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    gap: 16px;
+    position: absolute; bottom: 36px; left: 10vw; z-index: 2;
+    display: flex; align-items: center; gap: 16px;
   }
-
   .scroll-line {
-    width: 48px;
-    height: 1px;
+    width: 48px; height: 1px;
     background: linear-gradient(to right, rgba(255,255,255,0.6), transparent);
     animation: scrollPulse 2.2s ease-in-out infinite;
   }
-
   @keyframes scrollPulse {
-    0%, 100% { transform: scaleX(1); opacity: 0.5; }
+    0%,100% { transform: scaleX(1); opacity: 0.5; }
     50% { transform: scaleX(1.3); opacity: 1; }
   }
-
   .scroll-label {
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    color: rgba(255,255,255,0.45);
-    text-transform: uppercase;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px; letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.45); text-transform: uppercase;
   }
 
-  .gold-rule {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-  }
-
+  /* ─── SECTION COMMONS ─── */
   .section-label {
-    font-size: 28px;
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    color: var(--ink);
-    margin-bottom: 48px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 300; letter-spacing: 0.15em;
+    color: var(--ink); margin-bottom: 40px;
   }
+  .gold-rule { width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
 
-  #brand, #concept, #program, #projects, #contact {
+  /* ─── BRAND ─── */
+  #brand {
     background: #fff;
-    padding: 100px 10vw;
+    padding: 80px 10vw;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
   }
-
+  .brand-text .section-label { margin-bottom: 32px; }
   .brand-equation-row {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
+    display: flex; flex-direction: column; align-items: center; gap: 40px;
   }
-
   .brand-equation {
-    font-size: clamp(18px, 2.5vw, 32px);
-    font-weight: 300;
-    letter-spacing: 0.12em;
-    color: var(--ink);
-    white-space: nowrap;
+    font-size: clamp(16px, 3vw, 30px);
+    font-weight: 300; letter-spacing: 0.15em;
+    color: var(--ink); line-height: 1.5;
   }
-
   .brand-logo-illust {
-    height: 200px;
-    width: auto;
-    opacity: 0.9;
+    height: 160px; width: auto;
+    opacity: 0.9; display: block; margin: 0 auto;
   }
 
-  .concept-grid, .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    margin-top: 16px;
+  /* ─── CONCEPT ─── */
+  #concept { background: #fff; padding: 80px 10vw; }
+  .concept-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    margin-top: 8px;
   }
-
-  .concept-card, .project-card {
-    display: flex;
-    flex-direction: column;
-  }
-
+  .concept-card { display: flex; flex-direction: column; }
   .concept-img-wrap {
-    width: 100%;
-    aspect-ratio: 4/3;
-    overflow: hidden;
-    margin-bottom: 32px;
+    width: 100%; aspect-ratio: 4/3; overflow: hidden; margin-bottom: 28px;
   }
-
-  .concept-img-wrap img, .project-img {
-    width: 100%;
-    aspect-ratio: 4/3;
-    object-fit: cover;
-  }
-
   .concept-img-wrap img {
-    height: 100%;
+    width: 100%; height: 100%; object-fit: cover;
     transition: transform 0.7s ease;
   }
-
   .concept-card:hover .concept-img-wrap img { transform: scale(1.05); }
-
-  .concept-num, .project-date {
-    font-size: 13px;
-    letter-spacing: 0.25em;
-    color: var(--gold);
-    margin-bottom: 14px;
-  }
-
-  .concept-card-title, .project-title {
-    font-size: 18px;
-    letter-spacing: 0.1em;
-    color: var(--ink);
-    margin-bottom: 20px;
-    font-weight: 400;
-    line-height: 1.5;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--sep);
-  }
-
-  .concept-card-body, .project-body {
-    font-size: 15px;
-    line-height: 2.2;
-    color: #5a5248;
-    font-weight: 300;
-  }
-
-  .program-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: start;
-  }
-
-  .program-heading {
-    font-size: 20px;
-    letter-spacing: 0.12em;
-    font-weight: 400;
-    color: var(--ink);
-    margin-bottom: 20px;
-  }
-
-  .program-copy {
-    font-size: 16px;
-    line-height: 2.4;
-    color: #4a4540;
-    font-weight: 300;
+  .concept-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; letter-spacing: 0.3em; color: var(--gold);
     margin-bottom: 12px;
   }
+  .concept-card-title {
+    font-size: 17px; letter-spacing: 0.1em;
+    color: var(--ink); margin-bottom: 16px;
+    font-weight: 400; line-height: 1.5;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--sep);
+  }
+  .concept-card-body {
+    font-size: 15px; line-height: 2.2;
+    color: #5a5248; font-weight: 300;
+    flex: 1;
+  }
 
+  /* ─── PROGRAM ─── */
+  #program { background: #fff; padding: 80px 10vw; }
+  .program-layout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start;
+  }
+  .program-text .section-label { margin-bottom: 28px; }
+  .program-heading {
+    font-size: 20px; letter-spacing: 0.12em; font-weight: 400;
+    color: var(--ink); margin-bottom: 18px;
+  }
+  .program-copy {
+    font-size: 16px; line-height: 2.4; color: #4a4540;
+    font-weight: 300; margin-bottom: 12px;
+  }
   .program-note {
-    font-size: 13px;
-    letter-spacing: 0.1em;
-    color: var(--mist);
-    margin-top: 24px;
-    font-style: italic;
+    font-size: 13px; letter-spacing: 0.1em; color: var(--mist);
+    margin-top: 20px; font-style: italic;
+  }
+  .program-right { display: flex; flex-direction: column; gap: 8px; }
+  .program-main-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+  .program-sub-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .program-sub-imgs img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+
+  /* ─── SELECTED PROJECTS ─── */
+  #projects { background: #fff; padding: 80px 10vw; }
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    margin-top: 8px;
+  }
+  .project-card { display: flex; flex-direction: column; }
+  .project-img {
+    width: 100%; aspect-ratio: 4/3; object-fit: cover;
+    margin-bottom: 20px;
+  }
+  .project-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px; letter-spacing: 0.25em; color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .project-title {
+    font-size: 17px; letter-spacing: 0.08em;
+    color: var(--ink); margin-bottom: 14px; font-weight: 400;
+    padding-bottom: 14px; border-bottom: 1px solid var(--sep);
+  }
+  .project-body {
+    font-size: 15px; line-height: 2.2; color: #5a5248;
+    font-weight: 300;
   }
 
-  .program-right {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .program-main-img {
-    width: 100%;
-    aspect-ratio: 4/3;
-    object-fit: cover;
-  }
-
-  .program-sub-imgs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-
-  .program-sub-imgs img {
-    width: 100%;
-    aspect-ratio: 4/3;
-    object-fit: cover;
-  }
-
+  /* ─── VISION ─── */
   #vision {
     background: #fff;
-    padding: 100px 10vw;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
+    padding: 80px 10vw;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: center;
   }
-
-  .vision-logo-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .vision-logo {
-    max-width: 100%;
-    max-height: 480px;
-  }
-
+  .vision-logo-wrap { display: flex; align-items: center; justify-content: center; }
+  .vision-logo { max-width: 100%; max-height: 420px; }
+  .vision-text .section-label { margin-bottom: 36px; }
   .vision-en {
+    font-family: 'Cormorant Garamond', serif;
     font-size: clamp(15px, 1.8vw, 20px);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--ink);
-    line-height: 2.2;
-    letter-spacing: 0.04em;
+    font-weight: 300; font-style: italic;
+    color: var(--ink); letter-spacing: 0.04em; line-height: 2.2;
   }
 
+  /* ─── PROFILE ─── */
   #profile {
     background: #fff;
-    padding: 100px 10vw;
-    display: grid;
-    grid-template-columns: 380px 1fr;
-    gap: 80px;
-    align-items: start;
+    padding: 80px 10vw;
+    display: grid; grid-template-columns: 340px 1fr;
+    gap: 72px; align-items: start;
   }
-
   .profile-img {
-    width: 100%;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    object-position: top;
+    width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top;
   }
-
   .profile-org {
-    font-size: 13px;
-    letter-spacing: 0.2em;
-    color: var(--mist);
-    margin-bottom: 16px;
-    font-weight: 300;
+    font-size: 13px; letter-spacing: 0.15em; color: var(--mist);
+    margin-bottom: 14px; font-weight: 300;
   }
-
   .profile-name {
-    font-size: clamp(28px, 3vw, 40px);
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    color: var(--ink);
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 300; letter-spacing: 0.2em; color: var(--ink);
     margin-bottom: 4px;
   }
-
   .profile-name-en {
-    font-size: 17px;
-    letter-spacing: 0.25em;
-    font-style: italic;
-    color: var(--mist);
-    margin-bottom: 48px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; letter-spacing: 0.25em; font-style: italic;
+    color: var(--mist); margin-bottom: 40px;
   }
-
   .profile-bio {
-    font-size: 16px;
-    line-height: 2.5;
-    color: #4a4540;
+    font-size: 16px; line-height: 2.5; color: #4a4540;
     font-weight: 300;
-    border-left: 2px solid var(--gold);
-    padding-left: 24px;
+    border-left: 2px solid var(--gold); padding-left: 24px;
   }
-
   .profile-affil {
-    margin-top: 32px;
-    font-size: 13px;
-    letter-spacing: 0.1em;
-    color: var(--mist);
-    line-height: 2.2;
-    font-style: italic;
+    margin-top: 28px; font-size: 13px; letter-spacing: 0.1em;
+    color: var(--mist); line-height: 2.2; font-style: italic;
   }
 
+  /* ─── CONTACT ─── */
+  #contact { background: #fff; padding: 80px 10vw; }
   .contact-inner { max-width: 640px; }
-
   .contact-intro {
-    font-size: 16px;
-    line-height: 2.5;
-    color: #5a5248;
-    font-weight: 300;
-    margin-bottom: 56px;
+    font-size: 16px; line-height: 2.5; color: #5a5248;
+    font-weight: 300; margin-bottom: 48px;
   }
-
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
   .form-submit {
     display: inline-block;
-    margin-top: 8px;
-    background: transparent;
+    margin-top: 8px; background: transparent;
     border: 1px solid var(--ink);
     color: var(--ink);
-    font-size: 14px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    padding: 18px 56px;
-    text-decoration: none;
-    transition: all 0.3s;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px; letter-spacing: 0.3em; text-transform: uppercase;
+    padding: 18px 56px; cursor: pointer;
+    transition: all 0.3s; text-decoration: none;
   }
+  .form-submit:hover { background: var(--ink); color: var(--ivory); }
 
-  .form-submit:hover {
-    background: var(--ink);
-    color: #fff;
-  }
-
+  /* ─── FOOTER ─── */
   footer {
     background: #fff;
-    padding: 56px 10vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 48px 10vw;
+    display: flex; justify-content: space-between; align-items: center;
     border-top: 1px solid var(--sep);
+    gap: 24px; flex-wrap: wrap;
   }
-
-  .footer-logo {
-    height: 120px;
-    filter: brightness(0);
-    opacity: 0.75;
-  }
-
+  .footer-logo { height: 80px; filter: brightness(0); opacity: 0.75; }
   .footer-copy {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    color: var(--mist);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px; letter-spacing: 0.2em; color: var(--mist);
   }
-
   .footer-produced {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--mist);
-    text-align: right;
-    line-height: 1.8;
+    font-size: 10px; letter-spacing: 0.2em;
+    color: var(--mist); text-align: right; line-height: 1.8;
   }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.85s ease, transform 0.85s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
+  /* ─── REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.85s ease, transform 0.85s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
   .reveal-d1 { transition-delay: 0.1s; }
   .reveal-d2 { transition-delay: 0.22s; }
   .reveal-d3 { transition-delay: 0.34s; }
 
+  /* ═══════════════════════════════════════
+     MOBILE STYLES  (max-width: 768px)
+  ═══════════════════════════════════════ */
   @media (max-width: 768px) {
-    nav {
-      padding: 18px 22px;
-      flex-wrap: wrap;
-      align-items: flex-start;
-    }
 
+    /* NAV */
+    nav { padding: 16px 20px; }
+    nav.scrolled { padding: 12px 20px; }
     #nav-brand { font-size: 13px !important; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .nav-hamburger { display: flex; }
 
-    .nav-cta {
-      font-size: 12px;
-      padding: 8px 18px;
-    }
-
-    .nav-links {
-      order: 3;
-      width: 100%;
-      display: flex;
-      gap: 16px;
-      margin-top: 12px;
-      overflow-x: auto;
-    }
-
-    .nav-links a {
-      font-size: 11px;
-      white-space: nowrap;
-    }
-
-    #hero {
-      height: 88vh;
-      min-height: 620px;
-    }
-
-    .hero-bg { background-position: 68% center; }
-
+    /* HERO */
+    #hero { height: 100svh; min-height: 580px; }
+    .hero-bg { background-position: 75% center; }
+    .hero-sub { display: none; }
     .hero-content {
-      padding: 0 8vw;
+      padding: 0 7vw;
       max-width: 100%;
-      transform: translateY(40px);
+      width: 100%;
+      position: absolute;
+      bottom: 100px;
+      left: 0;
     }
-
-    .hero-tagline { white-space: normal; }
-
-    .concept-grid, .projects-grid, .program-layout, #vision, #profile {
-      grid-template-columns: 1fr;
-      gap: 32px;
+    .hero-tagline {
+      font-size: 14px; letter-spacing: 0.2em;
+      margin-bottom: 16px; line-height: 2.2;
+      color: rgba(255,255,255,0.85);
     }
-
-    section, #brand, #concept, #program, #projects, #vision, #profile, #contact {
-      padding: 60px 6vw !important;
+    .hero-produced {
+      font-size: 10px; letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.45); line-height: 1.8;
     }
+    .hero-scroll { left: 7vw; bottom: 36px; }
 
+    /* SECTIONS */
+    #brand, #concept, #program, #projects, #vision, #profile, #contact {
+      padding: 60px 6vw;
+    }
+    .section-label { font-size: 22px; margin-bottom: 32px; }
+
+    /* BRAND */
+    .brand-equation-row { flex-direction: column; gap: 32px; align-items: center; }
+    .brand-equation { font-size: 14px; white-space: normal; text-align: center; }
+    .brand-logo-illust { height: 140px; margin: 0 auto; display: block; }
+
+    /* CONCEPT */
+    .concept-grid { grid-template-columns: 1fr; gap: 40px; }
+    .concept-card-body { line-height: 2.2; }
+
+    /* PROGRAM */
+    .program-layout { grid-template-columns: 1fr; gap: 40px; }
+    .program-copy { line-height: 2.4; }
+
+    /* PROJECTS */
+    .projects-grid { grid-template-columns: 1fr; gap: 40px; }
+
+    /* VISION */
+    #vision { grid-template-columns: 1fr; gap: 40px; }
+    .vision-logo-wrap { order: 2; }
+    .vision-text { order: 1; }
+    .vision-logo { max-height: 240px; }
+
+    /* PROFILE */
+    #profile { grid-template-columns: 1fr; gap: 36px; }
+    .profile-img {
+      width: 72%; max-width: 280px;
+      aspect-ratio: 3/4; margin: 0 auto;
+      display: block;
+    }
+    .profile-name { font-size: 28px; }
+    .profile-name-en { margin-bottom: 28px; }
+    .profile-bio { font-size: 15px; line-height: 2.4; padding-left: 16px; }
+
+    /* CONTACT */
+    .form-submit { width: 100%; text-align: center; padding: 16px 32px; }
+
+    /* FOOTER */
     footer {
-      flex-direction: column;
-      text-align: center;
-      gap: 20px;
+      flex-direction: column; align-items: flex-start;
+      gap: 16px; padding: 40px 6vw;
     }
+    .footer-produced { text-align: left; }
+  }
 
-    .footer-produced { text-align: center; }
+  @media (max-width: 380px) {
+    .section-label { font-size: 20px; }
+    .brand-equation { font-size: 13px; }
+    .profile-img { width: 85%; }
   }
 </style>
 </head>
-
 <body>
 
+<!-- MOBILE MENU OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#concept" class="mobile-nav-link">Concept</a>
+  <a href="#program" class="mobile-nav-link">Program</a>
+  <a href="#projects" class="mobile-nav-link">Projects</a>
+  <a href="#profile" class="mobile-nav-link">Profile</a>
+  <a href="index.html" class="mobile-nav-link mobile-lang">JP</a>
+  <a href="#contact" class="mobile-nav-link mobile-cta">Contact</a>
+</div>
+
+<!-- NAV -->
 <nav id="nav">
-  <a href="#" id="nav-brand">Edo<span style="font-family:'Noto Serif JP',serif; font-weight:300;">-</span>cation</a>
+  <a href="#" id="nav-brand" style="font-family:'Cormorant Garamond',serif; font-size:14px; font-weight:400; letter-spacing:0.22em; color:rgba(255,255,255,0.92); text-decoration:none; transition:color 0.3s; white-space:nowrap;">Edo<span style="font-family:'Noto Serif JP',serif; font-weight:300;">-</span>cation</a>
   <ul class="nav-links">
     <li><a href="#concept">Concept</a></li>
     <li><a href="#program">Program</a></li>
@@ -580,8 +506,12 @@
     <li><a href="index.html" class="nav-lang">JP</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Contact</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
@@ -597,11 +527,12 @@
 
 <div class="gold-rule"></div>
 
+<!-- BRAND -->
 <section id="brand">
   <div class="brand-text reveal">
     <p class="section-label">Brand</p>
     <div class="brand-equation-row">
-      <p class="brand-equation">Edo Culture　×　Education　＝</p>
+      <p class="brand-equation">Edo Culture　×　Education　＝　Edo-cation</p>
       <img src="uploads/img_logo.png" alt="Edo-cation" class="brand-logo-illust reveal reveal-d2">
     </div>
   </div>
@@ -609,28 +540,27 @@
 
 <div class="gold-rule"></div>
 
+<!-- CONCEPT -->
 <section id="concept">
   <p class="section-label reveal">Concept</p>
   <div class="concept-grid">
     <div class="concept-card reveal reveal-d1">
       <div class="concept-img-wrap">
-        <img src="uploads/2.png" alt="Ukiyo-e">
+        <img src="uploads/2.png" alt="Ukiyo-e" style="object-position: center top;">
       </div>
       <p class="concept-num">01</p>
       <h3 class="concept-card-title">Beyond Barriers</h3>
-      <p class="concept-card-body">Customized workshops and events dissolve the psychological distance between modern life and traditional Edo culture, making it accessible and deeply personal.</p>
+      <p class="concept-card-body">Customised workshops and events dissolve the psychological distance between modern life and traditional Edo culture, making it accessible and deeply personal.</p>
     </div>
-
     <div class="concept-card reveal reveal-d2">
       <div class="concept-img-wrap">
-        <img src="uploads/1.png" alt="Traditional culture">
+        <img src="uploads/1.png" alt="Traditional makeup" style="object-position: center top;">
       </div>
       <p class="concept-num">02</p>
       <h3 class="concept-card-title">Learning from Masters</h3>
       <p class="concept-card-body">Japanese culture has been passed down through oral tradition. Here, you hear directly from the living bearers of Edo's arts — not from textbooks.</p>
       <p style="margin-top:16px; font-size:14px; letter-spacing:0.1em;"><a href="https://youtu.be/sfbS5Ghsp34?si=AffOQGlabF8iKRx-" target="_blank" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold); padding-bottom:2px;">Watch the video</a></p>
     </div>
-
     <div class="concept-card reveal reveal-d3">
       <div class="concept-img-wrap">
         <img src="uploads/img_kimono.jpg" alt="Kimono">
@@ -644,6 +574,7 @@
 
 <div class="gold-rule"></div>
 
+<!-- PROGRAM -->
 <section id="program">
   <div class="program-layout">
     <div class="program-text reveal">
@@ -666,6 +597,7 @@
 
 <div class="gold-rule"></div>
 
+<!-- SELECTED PROJECTS -->
 <section id="projects">
   <p class="section-label reveal">Selected Projects</p>
   <div class="projects-grid">
@@ -675,16 +607,12 @@
       <h3 class="project-title">Fan Calligraphy Workshop</h3>
       <p class="project-body">An in-house cultural event for visiting executives of an international entertainment app company. A master calligrapher led a fan-surface brushwork session.</p>
     </div>
-
     <div class="project-card reveal reveal-d2">
-      <a href="https://youtube.com/shorts/J31BokeXgPQ?si=OcHU8wDnfEDLW2vI" target="_blank" style="display:block;">
-        <img src="uploads/3.png" alt="Nihon Buyo" class="project-img" style="object-position: center top;">
-      </a>
+      <img src="uploads/3.png" alt="Nihon Buyo" class="project-img" style="object-position: center top;">
       <p class="project-date">2025.7</p>
-      <h3 class="project-title"><a href="https://youtube.com/shorts/J31BokeXgPQ?si=OcHU8wDnfEDLW2vI" target="_blank" style="color:inherit; text-decoration:none; border-bottom:1px solid var(--gold); padding-bottom:2px;">Private Nihon Buyo Performance</a></h3>
-      <p class="project-body">A private performance of the classical dance "Keisei" staged in Yoshiwara — the very setting of the work — with live shamisen accompaniment and a lecture by a woodblock print atelier.</p>
+      <h3 class="project-title">Private Nihon Buyo Performance</h3>
+      <p class="project-body">A private performance of the classical dance "Keisei" staged in Yoshiwara — the very setting of the work — with live shamisen accompaniment and a lecture by a woodblock print atelier. <a href="https://youtube.com/shorts/J31BokeXgPQ?si=OcHU8wDnfEDLW2vI" target="_blank" style="color:var(--gold); border-bottom:1px solid var(--gold); padding-bottom:1px;">Watch video</a></p>
     </div>
-
     <div class="project-card reveal reveal-d3">
       <img src="uploads/img_yorukai.jpg" alt="Evening of Edo" class="project-img" onerror="this.src='uploads/img_kimono.jpg'">
       <p class="project-date">2025.9</p>
@@ -696,6 +624,7 @@
 
 <div class="gold-rule"></div>
 
+<!-- VISION -->
 <section id="vision">
   <div class="vision-logo-wrap reveal">
     <img src="uploads/aaa2.png" alt="utsukushii nippon" class="vision-logo">
@@ -714,6 +643,7 @@
 
 <div class="gold-rule"></div>
 
+<!-- PROFILE -->
 <section id="profile">
   <img src="uploads/img_profile.jpg" alt="Keiko Yamamoto" class="profile-img reveal">
   <div class="reveal reveal-d1">
@@ -721,7 +651,7 @@
     <h2 class="profile-name">山本　桂子</h2>
     <p class="profile-name-en">Keiko Yamamoto</p>
     <p class="profile-bio">
-      A graduate of Waseda University, Keiko began studying Nihon Buyo classical Japanese dance at age eight under Wakana Isanami, and later trained under the fourth Iemoto of the Wakana school, Wakana Isaburo. She obtained her teaching license in 2018 and leads a dance studio in Tokyo's Taito ward.<br><br>
+      A graduate of Waseda University, Keiko began studying Nihon Buyo classical Japanese dance at age eight under Wakana Isanami, and later trained under the fourth Iemoto of the Wakana school, Wakana Isaburo. She obtained her teaching licence in 2018 and leads a dance studio in Tokyo's Taito ward.<br><br>
       Drawing on the aesthetic sensibility and deep knowledge of Japanese culture cultivated through dance, she produces and coordinates cultural events and workshops for international audiences.
     </p>
     <p class="profile-affil">
@@ -733,19 +663,22 @@
 
 <div class="gold-rule"></div>
 
+<!-- CONTACT -->
 <section id="contact">
   <div class="contact-inner">
     <p class="section-label reveal">Contact</p>
     <p class="contact-intro reveal">
       For enquiries about events, workshops, press, or collaborations, please reach out via the form below.
     </p>
-
     <div class="contact-form reveal">
-      <a href="https://forms.gle/3B2RJUY4oDCR17Mc9" target="_blank" class="form-submit">Contact Form</a>
+      <a href="https://forms.gle/3B2RJUY4oDCR17Mc9" target="_blank" class="form-submit">
+        Contact Form
+      </a>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <img src="uploads/img_logo.png" alt="Edo-cation" class="footer-logo">
   <p class="footer-copy">© 2025 Edo-cation. All rights reserved.</p>
@@ -753,27 +686,38 @@
 </footer>
 
 <script>
-const nav = document.getElementById('nav');
-const navBrand = document.getElementById('nav-brand');
-
-window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY > 60;
-  nav.classList.toggle('scrolled', scrolled);
-  navBrand.style.color = scrolled ? 'var(--ink)' : 'rgba(255,255,255,0.92)';
-});
-
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
+  const nav = document.getElementById('nav');
+  const navBrand = document.getElementById('nav-brand');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY > 60;
+    nav.classList.toggle('scrolled', scrolled);
+    navBrand.style.color = scrolled ? 'var(--ink)' : 'rgba(255,255,255,0.92)';
   });
-}, { threshold: 0.1 });
 
-reveals.forEach(el => observer.observe(el));
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>
