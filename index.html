@@ -52,8 +52,6 @@
   :root {
     --ink:    #1a1612;
     --ivory:  #f5f3ef;
-    --cream:  #eeebe4;
-    --warm:   #3d2e1e;
     --gold:   #b8965a;
     --gold-lt:#d4b07a;
     --mist:   #8a8278;
@@ -61,504 +59,171 @@
   }
 
   html { scroll-behavior: smooth; overflow-x: hidden; }
+  body { font-family: 'Noto Serif JP', serif; background: var(--ivory); color: var(--ink); overflow-x: hidden; }
 
-  body {
-    font-family: 'Noto Serif JP', serif;
-    background: var(--ivory);
-    color: var(--ink);
-    overflow-x: hidden;
-  }
-
-  /* ─── NAV ─── */
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 40px;
-    transition: background 0.4s, padding 0.4s, border-color 0.4s;
-    gap: 16px;
+    padding: 20px 40px; transition: background 0.4s, padding 0.4s; gap: 16px;
   }
-  nav.scrolled {
-    background: rgba(248,245,239,0.96);
-    backdrop-filter: blur(12px);
-    padding: 12px 40px;
-    border-bottom: 1px solid var(--sep);
-  }
+  nav.scrolled { background: rgba(248,245,239,0.96); backdrop-filter: blur(12px); padding: 12px 40px; border-bottom: 1px solid var(--sep); }
   .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
-  .nav-links a {
-    text-decoration: none;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: rgba(255,255,255,0.85); transition: color 0.2s;
-  }
+  .nav-links a { text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.85); transition: color 0.2s; }
   nav.scrolled .nav-links a { color: var(--mist); }
   .nav-links a:hover { color: var(--gold); }
-  .nav-lang {
-    font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.15em;
-    color: rgba(255,255,255,0.5) !important; text-decoration: none; border: 1px solid rgba(255,255,255,0.2);
-    padding: 4px 10px; transition: all 0.2s;
-  }
+  .nav-lang { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.15em; color: rgba(255,255,255,0.5) !important; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); padding: 4px 10px; transition: all 0.2s; }
   nav.scrolled .nav-lang { color: var(--mist) !important; border-color: var(--sep); }
   .nav-lang:hover { color: var(--gold-lt) !important; border-color: var(--gold-lt); }
-  .nav-cta {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px; letter-spacing: 0.14em;
-    color: rgba(255,255,255,0.85);
-    border: 1px solid rgba(255,255,255,0.4);
-    padding: 9px 22px; text-decoration: none;
-    transition: all 0.25s; white-space: nowrap;
-  }
+  .nav-cta { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.14em; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.4); padding: 9px 22px; text-decoration: none; transition: all 0.25s; white-space: nowrap; }
   nav.scrolled .nav-cta { color: var(--ink); border-color: var(--sep); }
   .nav-cta:hover { border-color: var(--gold); color: var(--gold); }
 
-  /* ─── HAMBURGER ─── */
-  .nav-hamburger {
-    display: none;
-    flex-direction: column; gap: 5px;
-    cursor: pointer; padding: 4px; background: none; border: none;
-    z-index: 110;
-  }
-  .nav-hamburger span {
-    display: block; width: 24px; height: 1.5px;
-    background: rgba(255,255,255,0.85);
-    transition: all 0.3s;
-  }
+  /* HAMBURGER */
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; z-index: 110; }
+  .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: rgba(255,255,255,0.85); transition: all 0.3s; }
   nav.scrolled .nav-hamburger span { background: var(--ink); }
   .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
   .nav-hamburger.open span:nth-child(2) { opacity: 0; }
   .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-  /* ─── MOBILE MENU ─── */
-  .mobile-menu {
-    display: none;
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(26,22,18,0.97);
-    z-index: 105;
-    flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 36px;
-  }
+  /* MOBILE MENU */
+  .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(26,22,18,0.97); z-index: 105; flex-direction: column; align-items: center; justify-content: center; gap: 36px; }
   .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; letter-spacing: 0.3em; text-transform: uppercase;
-    color: rgba(255,255,255,0.85); text-decoration: none;
-    transition: color 0.2s;
-  }
+  .mobile-menu a { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.2s; }
   .mobile-menu a:hover { color: var(--gold); }
-  .mobile-menu .mobile-cta {
-    margin-top: 16px;
-    font-size: 14px; letter-spacing: 0.2em;
-    border: 1px solid rgba(255,255,255,0.3);
-    padding: 14px 40px; color: rgba(255,255,255,0.85) !important;
-  }
-  .mobile-menu .mobile-lang {
-    font-size: 13px; letter-spacing: 0.2em;
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 8px 20px; color: rgba(255,255,255,0.4) !important;
-  }
+  .mobile-menu .mobile-lang { font-size: 13px; border: 1px solid rgba(255,255,255,0.2); padding: 8px 20px; color: rgba(255,255,255,0.4) !important; }
 
-  /* ─── HERO ─── */
-  #hero {
-    position: relative; height: 100svh; min-height: 600px;
-    display: flex; align-items: center; justify-content: flex-start;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: url('uploads/img_home.png') center/cover no-repeat;
-    background-color: #1a1008;
-  }
-  .hero-bg::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(
-      to right,
-      rgba(20,14,8,0.60) 0%,
-      rgba(20,14,8,0.20) 65%,
-      rgba(20,14,8,0.05) 100%
-    );
-  }
-  .hero-content {
-    position: relative; z-index: 2;
-    padding: 0 10vw;
-    max-width: 640px;
-    align-self: center;
-    margin-right: auto;
-  }
-  .hero-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(26px, 5vw, 38px);
-    font-weight: 400; letter-spacing: 0.25em;
-    color: #fff; margin-bottom: 20px;
-  }
-  .hero-tagline {
-    font-size: clamp(14px, 3vw, 17px); letter-spacing: 0.3em;
-    color: rgba(255,255,255,0.78);
-    line-height: 2; font-weight: 300; margin-bottom: 20px;
-  }
-  .hero-produced {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 11px; letter-spacing: 0.28em;
-    color: rgba(255,255,255,0.42);
-  }
-  .hero-scroll {
-    position: absolute; bottom: 36px; left: 10vw; z-index: 2;
-    display: flex; align-items: center; gap: 16px;
-  }
-  .scroll-line {
-    width: 48px; height: 1px;
-    background: linear-gradient(to right, rgba(255,255,255,0.6), transparent);
-    animation: scrollPulse 2.2s ease-in-out infinite;
-  }
-  @keyframes scrollPulse {
-    0%,100% { transform: scaleX(1); opacity: 0.5; }
-    50% { transform: scaleX(1.3); opacity: 1; }
-  }
-  .scroll-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 11px; letter-spacing: 0.3em;
-    color: rgba(255,255,255,0.45); text-transform: uppercase;
-  }
+  /* HERO */
+  #hero { position: relative; height: 100svh; min-height: 600px; display: flex; align-items: center; justify-content: flex-start; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: url('uploads/img_home.png') center/cover no-repeat; background-color: #1a1008; }
+  .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(20,14,8,0.60) 0%, rgba(20,14,8,0.20) 65%, rgba(20,14,8,0.05) 100%); }
+  .hero-content { position: relative; z-index: 2; padding: 0 10vw; max-width: 640px; align-self: center; margin-right: auto; }
+  .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 5vw, 38px); font-weight: 400; letter-spacing: 0.25em; color: #fff; margin-bottom: 20px; }
+  .hero-tagline { font-size: clamp(14px, 3vw, 17px); letter-spacing: 0.3em; color: rgba(255,255,255,0.78); line-height: 2; font-weight: 300; margin-bottom: 20px; }
+  .hero-produced { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.28em; color: rgba(255,255,255,0.42); }
+  .hero-scroll { position: absolute; bottom: 36px; left: 10vw; z-index: 2; display: flex; align-items: center; gap: 16px; }
+  .scroll-line { width: 48px; height: 1px; background: linear-gradient(to right, rgba(255,255,255,0.6), transparent); animation: scrollPulse 2.2s ease-in-out infinite; }
+  @keyframes scrollPulse { 0%,100% { transform: scaleX(1); opacity: 0.5; } 50% { transform: scaleX(1.3); opacity: 1; } }
+  .scroll-label { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.3em; color: rgba(255,255,255,0.45); text-transform: uppercase; }
 
-  /* ─── SECTION COMMONS ─── */
-  .section-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px; font-weight: 300; letter-spacing: 0.15em;
-    color: var(--ink); margin-bottom: 40px;
-  }
+  /* COMMONS */
+  .section-label { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 300; letter-spacing: 0.2em; color: var(--ink); margin-bottom: 56px; }
   .gold-rule { width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
 
-  /* ─── BRAND ─── */
-  #brand {
-    background: #fff;
-    padding: 80px 10vw;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-  }
-  .brand-text .section-label { margin-bottom: 32px; }
-  .brand-equation-row {
-    display: flex; flex-direction: column; align-items: center; gap: 40px;
-  }
-  .brand-equation {
-    font-size: clamp(16px, 3vw, 30px);
-    font-weight: 300; letter-spacing: 0.15em;
-    color: var(--ink); line-height: 1.5;
-  }
-  .brand-logo-illust {
-    height: 160px; width: auto;
-    opacity: 0.9; display: block; margin: 0 auto;
-  }
+  /* BRAND */
+  #brand { background: #fff; padding: 120px 10vw; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .brand-text .section-label { margin-bottom: 48px; }
+  .brand-equation-row { display: flex; flex-direction: column; align-items: center; gap: 56px; }
+  .brand-equation { font-size: clamp(16px, 3vw, 28px); font-weight: 300; letter-spacing: 0.15em; color: var(--ink); line-height: 1.5; }
+  .brand-logo-illust { height: 160px; width: auto; opacity: 0.9; display: block; margin: 0 auto; }
 
-  /* ─── CONCEPT ─── */
-  #concept {
-    background: #fff;
-    padding: 80px 10vw;
-  }
-  .concept-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
-    margin-top: 8px;
-  }
-  .concept-card { display: flex; flex-direction: column; }
-  .concept-img-wrap {
-    width: 100%; aspect-ratio: 4/3; overflow: hidden; margin-bottom: 28px;
-  }
-  .concept-img-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.7s ease;
-  }
-  .concept-card:hover .concept-img-wrap img { transform: scale(1.05); }
-  .concept-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px; letter-spacing: 0.3em; color: var(--gold);
-    margin-bottom: 12px;
-  }
-  .concept-card-title {
-    font-size: 15px; letter-spacing: 0.2em;
-    color: var(--ink); margin-bottom: 16px;
-    font-weight: 400; line-height: 1.7;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--sep);
-  }
-  .concept-card-body {
-    font-size: 13px; line-height: 2.4;
-    color: #5a5248; font-weight: 300; letter-spacing: 0.06em;
-    flex: 1;
-  }
+  /* CONCEPT — 写真なし */
+  #concept { background: #fff; padding: 120px 10vw; }
+  .concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+  .concept-card { display: flex; flex-direction: column; padding-top: 8px; }
+  .concept-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; font-style: italic; color: var(--gold); margin-bottom: 28px; line-height: 1; letter-spacing: 0.02em; }
+  .concept-card-title { font-size: 15px; letter-spacing: 0.2em; color: var(--ink); margin-bottom: 20px; font-weight: 400; line-height: 1.7; padding-bottom: 20px; border-bottom: 1px solid var(--sep); }
+  .concept-card-body { font-size: 13px; line-height: 2.7; color: #5a5248; font-weight: 300; letter-spacing: 0.06em; flex: 1; }
 
-  /* ─── PROGRAM ─── */
-  #program {
-    background: #fff;
-    padding: 80px 10vw;
-  }
-  .program-layout {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start;
-  }
-  .program-text .section-label { margin-bottom: 28px; }
-  .program-heading {
-    font-size: 17px; letter-spacing: 0.2em; font-weight: 400;
-    color: var(--ink); margin-bottom: 18px;
-  }
-  .program-copy {
-    font-size: 13px; line-height: 2.7; color: #4a4540;
-    letter-spacing: 0.08em; font-weight: 300;
-    margin-bottom: 12px;
-  }
-  .program-note {
-    font-size: 11px; letter-spacing: 0.15em; color: var(--mist);
-    margin-top: 20px;
-  }
+  /* PROGRAM */
+  #program { background: #fff; padding: 120px 10vw; }
+  .program-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .program-text .section-label { margin-bottom: 32px; }
+  .program-heading { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 0.18em; font-weight: 300; font-style: italic; color: var(--ink); margin-bottom: 28px; }
+  .program-copy { font-size: 13px; line-height: 2.9; color: #4a4540; letter-spacing: 0.08em; font-weight: 300; }
   .program-right { display: flex; flex-direction: column; gap: 8px; }
-  .program-main-img {
-    width: 100%; aspect-ratio: 4/3; object-fit: cover;
-  }
-  .program-sub-imgs {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-  }
-  .program-sub-imgs img {
-    width: 100%; aspect-ratio: 4/3; object-fit: cover;
-  }
+  .program-main-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+  .program-sub-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .program-sub-imgs img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
 
-  /* ─── SELECTED PROJECTS ─── */
-  #projects {
-    background: #fff;
-    padding: 80px 10vw;
-  }
-  .projects-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
-    margin-top: 8px;
-  }
+  /* PROJECTS */
+  #projects { background: #fff; padding: 120px 10vw; }
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
   .project-card { display: flex; flex-direction: column; }
-  .project-img {
-    width: 100%; aspect-ratio: 4/3; object-fit: cover;
-    margin-bottom: 20px;
-  }
-  .project-date {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 12px; letter-spacing: 0.25em; color: var(--gold);
-    margin-bottom: 10px;
-  }
-  .project-title {
-    font-size: 15px; letter-spacing: 0.15em;
-    color: var(--ink); margin-bottom: 14px; font-weight: 400;
-    padding-bottom: 14px; border-bottom: 1px solid var(--sep);
-  }
-  .project-body {
-    font-size: 12px; line-height: 2.4; color: #5a5248;
-    letter-spacing: 0.06em; font-weight: 300;
-  }
+  .project-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; margin-bottom: 24px; }
+  .project-date { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 12px; }
+  .project-title { font-size: 15px; letter-spacing: 0.15em; color: var(--ink); margin-bottom: 16px; font-weight: 400; padding-bottom: 16px; border-bottom: 1px solid var(--sep); }
+  .project-body { font-size: 12px; line-height: 2.6; color: #5a5248; letter-spacing: 0.06em; font-weight: 300; }
 
-  /* ─── VISION ─── */
-  #vision {
-    background: #fff;
-    padding: 80px 10vw;
-    display: flex; flex-direction: column;
-    align-items: center; gap: 40px;
-    text-align: center;
-  }
-  .vision-logo-wrap { display: flex; align-items: center; justify-content: center; }
+  /* VISION */
+  #vision { background: #fff; padding: 120px 10vw; display: flex; flex-direction: column; align-items: center; gap: 56px; text-align: center; }
   .vision-logo { max-width: 100%; max-height: 420px; }
-  .vision-text .section-label { margin-bottom: 36px; }
-  .vision-jp {
-    font-size: clamp(15px, 2.2vw, 22px);
-    font-weight: 300; letter-spacing: 0.18em;
-    color: var(--ink); line-height: 2.5;
-    margin-bottom: 0; display: block;
-  }
-  .vision-divider { width: 40px; height: 1px; background: var(--gold); margin-bottom: 28px; display: none; }
-  .vision-en {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(13px, 1.5vw, 17px);
-    font-weight: 300; font-style: italic;
-    color: var(--ink); letter-spacing: 0.06em; line-height: 2;
-    display: block;
-  }
+  .vision-jp { font-size: clamp(15px, 2.2vw, 22px); font-weight: 300; letter-spacing: 0.2em; color: var(--ink); line-height: 2.8; display: block; }
 
-  /* ─── PROFILE ─── */
-  #profile {
-    background: #fff;
-    padding: 80px 10vw;
-    display: grid; grid-template-columns: 340px 1fr;
-    gap: 72px; align-items: start;
-  }
-  .profile-img {
-    width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top;
-  }
-  .profile-org {
-    font-size: 12px; letter-spacing: 0.2em; color: var(--mist);
-    margin-bottom: 14px; font-weight: 300;
-  }
-  .profile-name {
-    font-size: clamp(26px, 3.5vw, 40px);
-    font-weight: 300; letter-spacing: 0.2em; color: var(--ink);
-    margin-bottom: 4px;
-  }
-  .profile-name-en {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px; letter-spacing: 0.25em; font-style: italic;
-    color: var(--mist); margin-bottom: 40px;
-  }
-  .profile-bio {
-    font-size: 13px; line-height: 2.9; color: #4a4540;
-    letter-spacing: 0.08em; font-weight: 300;
-    border-left: 2px solid var(--gold); padding-left: 24px;
-  }
-  .profile-affil {
-    margin-top: 28px; font-size: 11px; letter-spacing: 0.15em;
-    color: var(--mist); line-height: 2.2;
-  }
+  /* PROFILE */
+  #profile { background: #fff; padding: 120px 10vw; display: grid; grid-template-columns: 320px 1fr; gap: 80px; align-items: start; }
+  .profile-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; }
+  .profile-org { font-size: 12px; letter-spacing: 0.2em; color: var(--mist); margin-bottom: 14px; font-weight: 300; }
+  .profile-name { font-size: clamp(26px, 3.5vw, 40px); font-weight: 300; letter-spacing: 0.2em; color: var(--ink); margin-bottom: 4px; }
+  .profile-name-en { font-family: 'Cormorant Garamond', serif; font-size: 16px; letter-spacing: 0.25em; font-style: italic; color: var(--mist); margin-bottom: 48px; }
+  .profile-bio { font-size: 13px; line-height: 3; color: #4a4540; letter-spacing: 0.08em; font-weight: 300; border-left: 1px solid var(--gold); padding-left: 28px; }
+  .profile-affil { margin-top: 32px; font-size: 11px; letter-spacing: 0.15em; color: var(--mist); line-height: 2.4; }
 
-  /* ─── CONTACT ─── */
-  #contact {
-    background: #fff;
-    padding: 80px 10vw;
-  }
+  /* CONTACT */
+  #contact { background: #fff; padding: 120px 10vw; }
   .contact-inner { max-width: 640px; }
-  .contact-intro {
-    font-size: 13px; line-height: 2.8; color: #5a5248;
-    letter-spacing: 0.08em; font-weight: 300;
-    margin-bottom: 48px;
-  }
-  .contact-form { display: flex; flex-direction: column; gap: 16px; }
-  .form-submit {
-    display: inline-block;
-    margin-top: 8px; background: transparent;
-    border: 1px solid var(--ink);
-    color: var(--ink);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14px; letter-spacing: 0.3em; text-transform: uppercase;
-    padding: 18px 56px; cursor: pointer;
-    transition: all 0.3s; text-decoration: none;
-  }
+  .contact-intro { font-size: 13px; line-height: 2.8; color: #5a5248; letter-spacing: 0.08em; font-weight: 300; margin-bottom: 56px; }
+  .form-submit { display: inline-block; background: transparent; border: 1px solid var(--ink); color: var(--ink); font-family: 'Cormorant Garamond', serif; font-size: 14px; letter-spacing: 0.3em; text-transform: uppercase; padding: 20px 64px; cursor: pointer; transition: all 0.3s; text-decoration: none; }
   .form-submit:hover { background: var(--ink); color: var(--ivory); }
 
-  /* ─── FOOTER ─── */
-  footer {
-    background: #fff;
-    padding: 48px 10vw;
-    display: flex; justify-content: space-between; align-items: center;
-    border-top: 1px solid var(--sep);
-    gap: 24px; flex-wrap: wrap;
-  }
-  .footer-logo { height: 40px; opacity: 0.4; }
-  .footer-copy {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 11px; letter-spacing: 0.2em; color: var(--mist);
-  }
-  .footer-produced {
-    font-size: 10px; letter-spacing: 0.2em;
-    color: var(--mist); text-align: right; line-height: 1.8;
-  }
+  /* FOOTER */
+  footer { background: #fff; padding: 56px 10vw; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--sep); gap: 24px; flex-wrap: wrap; }
+  .footer-logo { height: 80px; filter: brightness(0); opacity: 0.75; }
+  .footer-copy { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.2em; color: var(--mist); }
+  .footer-produced { font-size: 10px; letter-spacing: 0.2em; color: var(--mist); text-align: right; line-height: 1.8; }
 
-  /* ─── REVEAL ─── */
+  /* REVEAL */
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.85s ease, transform 0.85s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
   .reveal-d1 { transition-delay: 0.1s; }
   .reveal-d2 { transition-delay: 0.22s; }
   .reveal-d3 { transition-delay: 0.34s; }
 
-  /* ═══════════════════════════════════════
-     MOBILE STYLES  (max-width: 768px)
-  ═══════════════════════════════════════ */
+  /* MOBILE */
   @media (max-width: 768px) {
-
-    /* NAV */
     nav { padding: 16px 20px; }
     nav.scrolled { padding: 12px 20px; }
     #nav-brand { font-size: 13px !important; }
     .nav-links { display: none; }
     .nav-cta { display: none; }
     .nav-hamburger { display: flex; }
-
-    /* HERO */
     #hero { height: 100svh; min-height: 580px; }
     .hero-bg { background-position: 75% center; }
     .hero-sub { display: none; }
-    .hero-content {
-      padding: 0 7vw;
-      max-width: 100%;
-      width: 100%;
-      position: absolute;
-      bottom: 100px;
-      left: 0;
-    }
-    .hero-tagline {
-      font-size: 14px; letter-spacing: 0.28em;
-      margin-bottom: 16px; line-height: 2.2;
-      color: rgba(255,255,255,0.85);
-    }
-    .hero-produced {
-      font-size: 10px; letter-spacing: 0.22em;
-      color: rgba(255,255,255,0.45); line-height: 1.8;
-    }
+    .hero-content { padding: 0 7vw; max-width: 100%; width: 100%; position: absolute; bottom: 100px; left: 0; }
+    .hero-tagline { font-size: 14px; letter-spacing: 0.28em; margin-bottom: 16px; line-height: 2.2; color: rgba(255,255,255,0.85); }
+    .hero-produced { font-size: 10px; letter-spacing: 0.22em; color: rgba(255,255,255,0.45); line-height: 1.8; }
     .hero-scroll { left: 7vw; bottom: 36px; }
-
-    /* SECTIONS — unified padding */
-    #brand, #concept, #program, #projects, #vision, #profile, #contact {
-      padding: 60px 6vw;
-    }
-
-    .section-label { font-size: 22px; margin-bottom: 32px; }
-
-    /* BRAND */
-    .brand-equation-row { flex-direction: column; gap: 32px; align-items: center; }
-    .brand-equation { font-size: 14px; white-space: normal; text-align: center; letter-spacing: 0.05em; }
-    .brand-logo-illust { height: 140px; margin: 0 auto; display: block; }
-
-    /* CONCEPT */
-    .concept-grid { grid-template-columns: 1fr; gap: 40px; }
-    .concept-card-body { line-height: 2.2; }
-
-    /* PROGRAM */
-    .program-layout { grid-template-columns: 1fr; gap: 40px; }
-    .program-copy { line-height: 2.4; }
-
-    /* PROJECTS */
-    .projects-grid { grid-template-columns: 1fr; gap: 40px; }
-
-    /* VISION */
-    #vision { gap: 32px; }
+    #brand, #concept, #program, #projects, #vision, #profile, #contact { padding: 72px 6vw; }
+    .section-label { font-size: 26px; margin-bottom: 40px; }
+    .brand-equation { font-size: 14px; text-align: center; letter-spacing: 0.05em; }
+    .brand-logo-illust { height: 140px; }
+    .concept-grid { grid-template-columns: 1fr; gap: 48px; }
+    .concept-num { font-size: 32px; }
+    .program-layout { grid-template-columns: 1fr; gap: 48px; }
+    .projects-grid { grid-template-columns: 1fr; gap: 48px; }
+    #vision { gap: 40px; }
     .vision-logo { max-height: 220px; }
-    .vision-jp { font-size: 16px; line-height: 2.4; }
-    .vision-en { font-size: 15px; }
-
-    /* PROFILE */
-    #profile { grid-template-columns: 1fr; gap: 36px; }
-    .profile-img {
-      width: 72%; max-width: 280px;
-      aspect-ratio: 3/4; margin: 0 auto;
-      display: block;
-    }
+    .vision-jp { font-size: 16px; line-height: 2.6; }
+    #profile { grid-template-columns: 1fr; gap: 40px; }
+    .profile-img { width: 72%; max-width: 280px; margin: 0 auto; display: block; }
     .profile-name { font-size: 28px; }
-    .profile-name-en { margin-bottom: 28px; }
-    .profile-bio { font-size: 13px; line-height: 2.6; padding-left: 16px; }
-
-    /* CONTACT */
-    .form-submit { width: 100%; text-align: center; padding: 16px 32px; }
-
-    /* FOOTER */
-    footer {
-      flex-direction: column; align-items: flex-start;
-      gap: 16px; padding: 40px 6vw;
-    }
+    .profile-name-en { margin-bottom: 32px; }
+    .profile-bio { line-height: 2.6; padding-left: 20px; }
+    .form-submit { width: 100%; text-align: center; padding: 18px 32px; }
+    footer { flex-direction: column; align-items: flex-start; gap: 16px; padding: 48px 6vw; }
     .footer-produced { text-align: left; }
-    .footer-logo { height: 80px; }
   }
-
-  /* ═══════════════════════════════════════
-     SMALL PHONES  (max-width: 380px)
-  ═══════════════════════════════════════ */
   @media (max-width: 380px) {
-    .hero-sub { font-size: 24px; }
-    .section-label { font-size: 20px; }
-    .brand-equation { font-size: 14px; }
+    .section-label { font-size: 22px; }
+    .brand-equation { font-size: 13px; }
     .profile-img { width: 85%; }
   }
 </style>
 </head>
 <body>
 
-<!-- MOBILE MENU OVERLAY -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#brand" class="mobile-nav-link">Brand</a>
   <a href="#concept" class="mobile-nav-link">Concept</a>
@@ -570,7 +235,6 @@
   <a href="index_en.html" class="mobile-nav-link mobile-lang">EN</a>
 </div>
 
-<!-- NAV -->
 <nav id="nav">
   <a href="#" id="nav-brand" style="font-family:'Cormorant Garamond',serif; font-size:14px; font-weight:400; letter-spacing:0.22em; color:rgba(255,255,255,0.92); text-decoration:none; transition:color 0.3s; white-space:nowrap;">Edo<span style="font-family:'Noto Serif JP',serif; font-weight:300;">-</span>cation</a>
   <ul class="nav-links">
@@ -586,7 +250,6 @@
   </button>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
@@ -602,7 +265,6 @@
 
 <div class="gold-rule"></div>
 
-<!-- BRAND -->
 <section id="brand">
   <div class="brand-text reveal">
     <p class="section-label">Brand</p>
@@ -615,31 +277,21 @@
 
 <div class="gold-rule"></div>
 
-<!-- CONCEPT -->
 <section id="concept">
   <p class="section-label reveal">Concept</p>
   <div class="concept-grid">
     <div class="concept-card reveal reveal-d1">
-      <div class="concept-img-wrap">
-        <img src="uploads/2.png" alt="浮世絵" style="object-position: center top;">
-      </div>
       <p class="concept-num">01</p>
       <h3 class="concept-card-title">心理的な垣根を超え</h3>
       <p class="concept-card-body">目的や場に応じて研修やイベントをカスタマイズ。伝統文化への心理的な距離を超え、江戸文化の世界へ。</p>
     </div>
     <div class="concept-card reveal reveal-d2">
-      <div class="concept-img-wrap">
-        <img src="uploads/1.png" alt="化粧" style="object-position: center top;">
-      </div>
       <p class="concept-num">02</p>
       <h3 class="concept-card-title">担い手とともに</h3>
       <p class="concept-card-body">口伝により継承されてきた日本文化。教科書ではなく、江戸文化を支える担い手から直接話を聞く。</p>
-      <p style="margin-top:16px; font-size:12px; letter-spacing:0.15em;"><a href="https://youtu.be/sfbS5Ghsp34?si=AffOQGlabF8iKRx-" target="_blank" style="color:var(--gold); text-decoration:underline;">動画はこちら</a></p>
+      <p style="margin-top:20px; font-size:12px; letter-spacing:0.15em;"><a href="https://youtu.be/sfbS5Ghsp34?si=AffOQGlabF8iKRx-" target="_blank" style="color:var(--gold); text-decoration:underline;">動画はこちら</a></p>
     </div>
     <div class="concept-card reveal reveal-d3">
-      <div class="concept-img-wrap">
-        <img src="uploads/img_kimono.jpg" alt="着物">
-      </div>
       <p class="concept-num">03</p>
       <h3 class="concept-card-title">その世界に没入する</h3>
       <p class="concept-card-body">ワークショップや体験を通して、五感を使い、イマーシブに江戸文化を楽しむ。</p>
@@ -649,20 +301,17 @@
 
 <div class="gold-rule"></div>
 
-<!-- PROGRAM -->
 <section id="program">
   <div class="program-layout">
     <div class="program-text reveal">
       <p class="section-label">Program</p>
       <h3 class="program-heading">ユニークエレガンス</h3>
-      <p class="program-copy">
-        私たちが会を創るとき、最も大切にしていることは、ユニークさと品格です。自然との共生文化である日本の伝統文化。その精神性にそっと心が馴染んでいくような、一期一会の場を心を込めてお創りしています。「日本舞踊」「浮世絵版画」「茶会」「落語」の織りなす組み合わせの妙——その美しさに湧き立つ、瑞々しいときめきをお楽しみください。
-      </p>
+      <p class="program-copy">私たちが会を創るとき、最も大切にしていることは、ユニークさと品格です。自然との共生文化である日本の伝統文化。その精神性にそっと心が馴染んでいくような、一期一会の場を心を込めてお創りしています。「日本舞踊」「浮世絵版画」「茶会」「落語」の織りなす組み合わせの妙——その美しさに湧き立つ、瑞々しいときめきをお楽しみください。</p>
     </div>
     <div class="program-right reveal reveal-d1">
       <img src="uploads/a.png" alt="芸者" class="program-main-img" style="object-position: center top;">
       <div class="program-sub-imgs">
-        <img src="uploads/img_wagashi.jpg" alt="和菓子" onerror="this.src='uploads/img_ukiyo.jpg'">
+        <img src="uploads/img_wagashi.jpg" alt="和菓子">
         <img src="uploads/img_sensu.png" alt="扇面書道">
       </div>
     </div>
@@ -671,7 +320,6 @@
 
 <div class="gold-rule"></div>
 
-<!-- SELECTED PROJECTS -->
 <section id="projects">
   <p class="section-label reveal">Selected Project</p>
   <div class="projects-grid">
@@ -698,10 +346,9 @@
 
 <div class="gold-rule"></div>
 
-<!-- VISION -->
 <section id="vision">
   <p class="section-label reveal" style="text-align:center;">Our Vision</p>
-  <div class="vision-logo-wrap reveal">
+  <div class="reveal">
     <img src="uploads/aaa2.png" alt="Utsukushii Nippon" class="vision-logo">
   </div>
   <p class="vision-jp reveal reveal-d2" style="text-align:center;">
@@ -712,14 +359,13 @@
 
 <div class="gold-rule"></div>
 
-<!-- PROFILE -->
 <section id="profile">
   <img src="uploads/img_profile.jpg" alt="山本桂子" class="profile-img reveal">
   <div class="reveal reveal-d1">
     <p class="profile-org">Founder, Utsukushii Nippon</p>
     <h2 class="profile-name">山本　桂子</h2>
     <p class="profile-name-en" style="margin-bottom:8px;">Keiko Yamamoto</p>
-    <p class="profile-org" style="margin-bottom:32px; letter-spacing:0.15em; font-style:italic;">Cultural Relationship Developer</p>
+    <p class="profile-org" style="margin-bottom:40px; letter-spacing:0.15em; font-style:italic;">Cultural Relationship Developer</p>
     <p class="profile-bio">
       早稲田大学卒。八歳より若菜流 若菜伊三恵美に師事し、日本舞踊を始める。二十歳より若菜流四世家元 若菜伊三郎に師事し、2018年若菜流師範を取得。台東区にて日本舞踊教室を主宰する。(公社)日本舞踊協会会員。<br><br>
       日本舞踊の活動から得た美的感覚や日本文化の知識を生かし、イベントやワークショップの企画やコーディネートを行う。
@@ -733,30 +379,23 @@
 
 <div class="gold-rule"></div>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="contact-inner">
     <p class="section-label reveal">Contact</p>
-    <p class="contact-intro reveal">
-      お問い合わせは下記フォームよりご連絡ください。
-    </p>
-    <div class="contact-form reveal">
-      <a href="https://forms.gle/3B2RJUY4oDCR17Mc9" target="_blank" class="form-submit">
-        Contact Form
-      </a>
+    <p class="contact-intro reveal">お問い合わせは下記フォームよりご連絡ください。</p>
+    <div class="reveal">
+      <a href="https://forms.gle/3B2RJUY4oDCR17Mc9" target="_blank" class="form-submit">Contact Form</a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <img src="uploads/img_logo.png" alt="江戸ケーション" class="footer-logo" style="filter:brightness(0); opacity:0.75; height:80px;">
+  <img src="uploads/img_logo.png" alt="江戸ケーション" class="footer-logo">
   <p class="footer-copy">© 2026 江戸ケーション. All rights reserved.</p>
   <p class="footer-produced">Edo-cation<br>produced by Utsukushii Nippon</p>
 </footer>
 
 <script>
-  // ─── NAV scroll ───
   const nav = document.getElementById('nav');
   const navBrand = document.getElementById('nav-brand');
   window.addEventListener('scroll', () => {
@@ -764,18 +403,13 @@
     nav.classList.toggle('scrolled', scrolled);
     navBrand.style.color = scrolled ? 'var(--ink)' : 'rgba(255,255,255,0.92)';
   });
-
-  // ─── Hamburger / mobile menu ───
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-
   hamburger.addEventListener('click', () => {
     const open = mobileMenu.classList.toggle('open');
     hamburger.classList.toggle('open', open);
     document.body.style.overflow = open ? 'hidden' : '';
   });
-
-  // Close mobile menu when a link is tapped
   mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       mobileMenu.classList.remove('open');
@@ -783,8 +417,6 @@
       document.body.style.overflow = '';
     });
   });
-
-  // ─── Reveal on scroll ───
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
