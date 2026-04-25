@@ -351,8 +351,9 @@
   #vision {
     background: #fff;
     padding: 80px 10vw;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 64px; align-items: center;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 40px;
+    text-align: center;
   }
   .vision-logo-wrap { display: flex; align-items: center; justify-content: center; }
   .vision-logo { max-width: 100%; max-height: 420px; }
@@ -361,15 +362,15 @@
     font-size: clamp(15px, 2.2vw, 22px);
     font-weight: 300; letter-spacing: 0.18em;
     color: var(--ink); line-height: 2.5;
-    margin-bottom: 36px;
+    margin-bottom: 0; display: block;
   }
   .vision-divider { width: 40px; height: 1px; background: var(--gold); margin-bottom: 28px; display: none; }
   .vision-en {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(13px, 1.5vw, 17px);
     font-weight: 300; font-style: italic;
-    color: var(--mist); letter-spacing: 0.06em; line-height: 2;
-    display: none;
+    color: var(--ink); letter-spacing: 0.06em; line-height: 2;
+    display: block;
   }
 
   /* ─── PROFILE ─── */
@@ -515,13 +516,10 @@
     .projects-grid { grid-template-columns: 1fr; gap: 40px; }
 
     /* VISION */
-    #vision { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-    .vision-logo-wrap { order: 2; }
-    .vision-text { order: 1; text-align: center; }
-    .vision-logo { max-height: 240px; }
-    .vision-jp { font-size: 16px; }
+    #vision { gap: 32px; }
+    .vision-logo { max-height: 220px; }
+    .vision-jp { font-size: 16px; line-height: 2.4; }
     .vision-en { font-size: 15px; }
-    #vision .section-label { text-align: center; }
 
     /* PROFILE */
     #profile { grid-template-columns: 1fr; gap: 36px; }
@@ -561,12 +559,13 @@
 
 <!-- MOBILE MENU OVERLAY -->
 <div class="mobile-menu" id="mobileMenu">
+  <a href="#brand" class="mobile-nav-link">Brand</a>
   <a href="#concept" class="mobile-nav-link">Concept</a>
   <a href="#program" class="mobile-nav-link">Program</a>
   <a href="#projects" class="mobile-nav-link">Projects</a>
+  <a href="#vision" class="mobile-nav-link">Vision</a>
   <a href="#profile" class="mobile-nav-link">Profile</a>
   <a href="index_en.html" class="mobile-nav-link mobile-lang">EN</a>
-  <a href="#contact" class="mobile-nav-link mobile-cta">Contact</a>
 </div>
 
 <!-- NAV -->
@@ -633,7 +632,7 @@
       <p class="concept-num">02</p>
       <h3 class="concept-card-title">担い手から学び</h3>
       <p class="concept-card-body">口伝により継承されてきた日本文化。教科書ではなく、江戸文化を支える担い手から直接話を聞くことができる。</p>
-      <p style="margin-top:16px; font-size:12px; letter-spacing:0.15em;"><a href="https://youtu.be/sfbS5Ghsp34?si=AffOQGlabF8iKRx-" target="_blank" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold); padding-bottom:2px;">動画はこちら</a></p>
+      <p style="margin-top:16px; font-size:12px; letter-spacing:0.15em;"><a href="https://youtu.be/sfbS5Ghsp34?si=AffOQGlabF8iKRx-" target="_blank" style="color:var(--gold); text-decoration:underline;">動画はこちら</a></p>
     </div>
     <div class="concept-card reveal reveal-d3">
       <div class="concept-img-wrap">
@@ -685,7 +684,7 @@
       <img src="uploads/3.png" alt="日本舞踊" class="project-img" style="object-position: center top;">
       <p class="project-date">2025.7</p>
       <h3 class="project-title">日本舞踊 貸切公演</h3>
-      <p class="project-body">日本舞踊長唄「傾城」を作品の舞台である吉原にて開催。地方生演奏、江戸創業の浮世絵版画工房の講演を実施。<br><a href="https://youtube.com/shorts/J31BokeXgPQ?si=OcHU8wDnfEDLW2vI" target="_blank" style="color:var(--gold); border-bottom:1px solid var(--gold); padding-bottom:1px;">動画はこちら</a></p>
+      <p class="project-body">日本舞踊長唄「傾城」を作品の舞台である吉原にて開催。地方生演奏、江戸創業の浮世絵版画工房の講演を実施。<br><a href="https://youtube.com/shorts/J31BokeXgPQ?si=OcHU8wDnfEDLW2vI" target="_blank" style="color:var(--gold); text-decoration:underline;">動画はこちら</a></p>
     </div>
     <div class="project-card reveal reveal-d3">
       <img src="uploads/img_yorukai.jpg" alt="江戸の夜会" class="project-img" onerror="this.src='uploads/img_kimono.jpg'">
@@ -700,23 +699,14 @@
 
 <!-- VISION -->
 <section id="vision">
+  <p class="section-label reveal" style="text-align:center;">Our Vision</p>
   <div class="vision-logo-wrap reveal">
     <img src="uploads/aaa2.png" alt="Utsukushii Nippon" class="vision-logo">
   </div>
-  <div class="vision-text reveal reveal-d2">
-    <p class="section-label">Our Vision</p>
-    <p class="vision-jp">
-      まだ経験したことのない<br>にっぽんのうつくしさに邂逅し<br>
-      心に刻まれる深い感動を<br>世界の人々と共有したい
-    </p>
-    <div class="vision-divider"></div>
-    <p class="vision-en">
-      "We want to invite you to unveil<br>
-      the depth and beauty of Japanese culture,<br>
-      connect with its spirituality<br>
-      and share your feelings with people around the world."
-    </p>
-  </div>
+  <p class="vision-jp reveal reveal-d2" style="text-align:center;">
+    まだ経験したことのない<br>にっぽんのうつくしさに邂逅し<br>
+    心に刻まれる深い感動を<br>世界の人々と共有したい
+  </p>
 </section>
 
 <div class="gold-rule"></div>
@@ -733,7 +723,7 @@
       日本舞踊の活動から得た美的感覚や日本文化の知識を生かし、イベントやワークショップの企画やコーディネートを行う。
     </p>
     <p class="profile-affil">
-      Member, Japan Dance Association<br>
+      The Nihonbuyo Association<br>
       Founder, Utsukushii Nippon
     </p>
   </div>
