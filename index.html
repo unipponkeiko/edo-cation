@@ -432,24 +432,25 @@
     /* HERO */
     #hero { height: 100svh; min-height: 580px; }
     .hero-bg { background-position: 75% center; }
+    .hero-sub { display: none; }
     .hero-content {
-      padding: 0 6vw;
-      max-width: 55%;
+      padding: 0 7vw;
+      max-width: 100%;
       width: 100%;
       position: absolute;
-      top: 140px;
+      bottom: 100px;
       left: 0;
     }
-    .hero-sub {
-      font-size: 20px; margin-bottom: 20px;
-      letter-spacing: 0.2em; line-height: 1.6;
-    }
     .hero-tagline {
-      font-size: 11px; letter-spacing: 0.2em;
-      margin-bottom: 20px; line-height: 2.4;
+      font-size: 14px; letter-spacing: 0.28em;
+      margin-bottom: 16px; line-height: 2.2;
+      color: rgba(255,255,255,0.85);
     }
-    .hero-produced { font-size: 9px; letter-spacing: 0.2em; line-height: 1.8; }
-    .hero-scroll { left: 6vw; bottom: 36px; }
+    .hero-produced {
+      font-size: 10px; letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.45); line-height: 1.8;
+    }
+    .hero-scroll { left: 7vw; bottom: 36px; }
 
     /* SECTIONS — unified padding */
     #brand, #concept, #program, #projects, #vision, #profile, #contact {
@@ -460,8 +461,9 @@
 
     /* BRAND */
     .brand-equation-row { flex-direction: column; gap: 24px; align-items: flex-start; }
-    .brand-equation { font-size: 16px; white-space: normal; }
-    .brand-logo-illust { height: 120px; }
+    .brand-equation { font-size: 15px; white-space: normal; }
+    .brand-logo-illust { display: none; }
+    .brand-equation::after { content: '江戸ケーション'; }
 
     /* CONCEPT */
     .concept-grid { grid-template-columns: 1fr; gap: 40px; }
