@@ -430,30 +430,31 @@
     /* HERO */
     #hero { height: 100svh; min-height: 580px; }
     .hero-bg {
-      background-position: 60% 80%;
-      background-size: 85%;
+      background-position: 60% 10%;
+      background-size: cover;
       background-repeat: no-repeat;
       background-color: #1a1008;
     }
     .hero-bg::after {
       background: linear-gradient(
-        to bottom,
-        rgba(20,14,8,0.1) 0%,
-        rgba(20,14,8,0.05) 45%,
-        rgba(20,14,8,0.25) 100%
+        to top,
+        rgba(20,14,8,0.92) 0%,
+        rgba(20,14,8,0.5) 30%,
+        rgba(20,14,8,0.0) 55%
       );
     }
     .hero-content {
-      padding: 0 6vw;
+      padding: 0 7vw 90px;
       max-width: 100%;
+      width: 100%;
       position: relative;
       z-index: 2;
-      align-self: flex-start;
-      padding-top: 120px;
+      align-self: flex-end;
     }
-    .hero-sub { font-size: 30px; margin-bottom: 10px; }
-    .hero-tagline { font-size: 13px; letter-spacing: 0.2em; margin-bottom: 12px; }
-    .hero-scroll { left: 6vw; bottom: 28px; }
+    .hero-sub { font-size: 28px; margin-bottom: 12px; letter-spacing: 0.2em; }
+    .hero-tagline { font-size: 13px; letter-spacing: 0.25em; margin-bottom: 10px; line-height: 1.8; }
+    .hero-produced { font-size: 10px; letter-spacing: 0.22em; }
+    .hero-scroll { left: 7vw; bottom: 32px; }
 
     /* SECTIONS — unified padding */
     #brand, #concept, #program, #projects, #vision, #profile, #contact {
