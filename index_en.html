@@ -1,147 +1,779 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>江戸ケーション｜Edo-cation</title>
-
+<title>Edo-cation | Japanese Cultural Experience Program</title>
+<meta name="description" content="Edo-cation is a cultural experience program produced by utsukushii nippon, offering Japanese dance, ukiyo-e, tea ceremony, rakugo, and bespoke cultural events.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-* { box-sizing:border-box; margin:0; padding:0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-  font-family: 'Noto Serif JP', serif;
-  color:#1a1612;
-}
+  :root {
+    --ink: #1a1612;
+    --ivory: #f5f3ef;
+    --gold: #b8965a;
+    --gold-lt: #d4b07a;
+    --mist: #8a8278;
+    --sep: rgba(138,130,120,0.2);
+  }
 
-/* HERO */
-#hero {
-  position:relative;
-  height:100vh;
-  display:flex;
-  align-items:center;
-}
+  html { scroll-behavior: smooth; }
 
-.hero-bg {
-  position:absolute;
-  inset:0;
-  background:url('uploads/img_home.png') center/cover no-repeat;
-}
+  body {
+    font-family: 'Cormorant Garamond', serif;
+    background: #fff;
+    color: var(--ink);
+    overflow-x: hidden;
+  }
 
-.hero-content {
-  position:relative;
-  z-index:2;
-  padding:0 8vw;
-  max-width:900px;
-}
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 56px;
+    transition: background 0.4s, padding 0.4s, border-color 0.4s;
+  }
 
-.hero-sub {
-  font-family:'Cormorant Garamond', serif;
-  font-size:32px;
-  letter-spacing:0.25em;
-  color:#fff;
-  margin-bottom:20px;
-}
+  nav.scrolled {
+    background: rgba(248,245,239,0.96);
+    backdrop-filter: blur(12px);
+    padding: 14px 56px;
+    border-bottom: 1px solid var(--sep);
+  }
 
-.hero-tagline {
-  font-size:14px;
-  letter-spacing:0.2em;
-  color:rgba(255,255,255,0.8);
-  line-height:2;
-  margin-bottom:20px;
-}
+  #nav-brand {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.92);
+    text-decoration: none;
+    transition: color 0.3s;
+    white-space: nowrap;
+  }
 
-/* ★ここが今回の修正 */
-.hero-produced {
-  font-family:'Cormorant Garamond', serif;
-  font-style:normal;
-  letter-spacing:0.28em;
-  font-size:11px;
-  color:rgba(255,255,255,0.4);
-  opacity:0.45;
-}
+  nav.scrolled #nav-brand { color: var(--ink); }
 
-/* scroll */
-.hero-scroll {
-  position:absolute;
-  bottom:30px;
-  left:8vw;
-  display:flex;
-  gap:12px;
-  align-items:center;
-}
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+  }
 
-.scroll-line {
-  width:40px;
-  height:1px;
-  background:rgba(255,255,255,0.5);
-}
+  .nav-links a {
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    transition: color 0.2s;
+  }
 
-.scroll-label {
-  font-size:11px;
-  letter-spacing:0.3em;
-  color:rgba(255,255,255,0.5);
-}
+  nav.scrolled .nav-links a { color: var(--mist); }
+  .nav-links a:hover { color: var(--gold); }
 
-/* CONTACT */
-#contact {
-  padding:80px 8vw;
-}
+  .nav-lang {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 4px 10px;
+  }
 
-.contact-intro {
-  margin-bottom:40px;
-}
+  .nav-cta {
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 9px 22px;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
 
-/* フォーム */
-.contact-form {
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-}
+  nav.scrolled .nav-cta {
+    color: var(--ink);
+    border-color: var(--sep);
+  }
 
-.form-input, .form-textarea {
-  border:1px solid #ccc;
-  padding:12px;
-}
+  .nav-cta:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
 
-.form-submit {
-  border:1px solid #000;
-  padding:14px 40px;
-  background:none;
-  cursor:pointer;
-}
+  #hero {
+    position: relative;
+    height: 100vh;
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
 
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('uploads/img_home.png') center/cover no-repeat;
+    background-color: #1a1008;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(20,14,8,0.55) 0%, rgba(20,14,8,0.15) 65%, rgba(20,14,8,0) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 8vw;
+    max-width: 980px;
+  }
+
+  .hero-sub {
+    font-size: clamp(22px, 3vw, 38px);
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  .hero-tagline {
+    font-size: clamp(13px, 1.5vw, 17px);
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.78);
+    line-height: 2;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .hero-produced {
+    font-style: normal;
+    letter-spacing: 0.28em;
+    font-size: 11px;
+    color: rgba(255,255,255,0.42);
+    opacity: 0.45;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 8vw;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .scroll-line {
+    width: 48px;
+    height: 1px;
+    background: linear-gradient(to right, rgba(255,255,255,0.6), transparent);
+    animation: scrollPulse 2.2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { transform: scaleX(1); opacity: 0.5; }
+    50% { transform: scaleX(1.3); opacity: 1; }
+  }
+
+  .scroll-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+  }
+
+  .gold-rule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .section-label {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--ink);
+    margin-bottom: 48px;
+  }
+
+  #brand, #concept, #program, #projects, #contact {
+    background: #fff;
+    padding: 100px 10vw;
+  }
+
+  .brand-equation-row {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .brand-equation {
+    font-size: clamp(18px, 2.5vw, 32px);
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .brand-logo-illust {
+    height: 200px;
+    width: auto;
+    opacity: 0.9;
+  }
+
+  .concept-grid, .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 16px;
+  }
+
+  .concept-card, .project-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .concept-img-wrap {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+
+  .concept-img-wrap img, .project-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
+
+  .concept-img-wrap img {
+    height: 100%;
+    transition: transform 0.7s ease;
+  }
+
+  .concept-card:hover .concept-img-wrap img { transform: scale(1.05); }
+
+  .concept-num, .project-date {
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .concept-card-title, .project-title {
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+    margin-bottom: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--sep);
+  }
+
+  .concept-card-body, .project-body {
+    font-size: 15px;
+    line-height: 2.2;
+    color: #5a5248;
+    font-weight: 300;
+  }
+
+  .program-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .program-heading {
+    font-size: 20px;
+    letter-spacing: 0.12em;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .program-copy {
+    font-size: 16px;
+    line-height: 2.4;
+    color: #4a4540;
+    font-weight: 300;
+    margin-bottom: 12px;
+  }
+
+  .program-note {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: var(--mist);
+    margin-top: 24px;
+    font-style: italic;
+  }
+
+  .program-right {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .program-main-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
+
+  .program-sub-imgs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .program-sub-imgs img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
+
+  #vision {
+    background: #fff;
+    padding: 100px 10vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .vision-logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .vision-logo {
+    max-width: 100%;
+    max-height: 480px;
+  }
+
+  .vision-en {
+    font-size: clamp(15px, 1.8vw, 20px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 2.2;
+    letter-spacing: 0.04em;
+  }
+
+  #profile {
+    background: #fff;
+    padding: 100px 10vw;
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .profile-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .profile-org {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--mist);
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+
+  .profile-name {
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .profile-name-en {
+    font-size: 17px;
+    letter-spacing: 0.25em;
+    font-style: italic;
+    color: var(--mist);
+    margin-bottom: 48px;
+  }
+
+  .profile-bio {
+    font-size: 16px;
+    line-height: 2.5;
+    color: #4a4540;
+    font-weight: 300;
+    border-left: 2px solid var(--gold);
+    padding-left: 24px;
+  }
+
+  .profile-affil {
+    margin-top: 32px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: var(--mist);
+    line-height: 2.2;
+    font-style: italic;
+  }
+
+  .contact-inner { max-width: 640px; }
+
+  .contact-intro {
+    font-size: 16px;
+    line-height: 2.5;
+    color: #5a5248;
+    font-weight: 300;
+    margin-bottom: 56px;
+  }
+
+  .form-submit {
+    display: inline-block;
+    margin-top: 8px;
+    background: transparent;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 18px 56px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .form-submit:hover {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  footer {
+    background: #fff;
+    padding: 56px 10vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--sep);
+  }
+
+  .footer-logo {
+    height: 120px;
+    filter: brightness(0);
+    opacity: 0.75;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--mist);
+  }
+
+  .footer-produced {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--mist);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.85s ease, transform 0.85s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.22s; }
+  .reveal-d3 { transition-delay: 0.34s; }
+
+  @media (max-width: 768px) {
+    nav {
+      padding: 18px 22px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    #nav-brand { font-size: 13px !important; }
+
+    .nav-cta {
+      font-size: 12px;
+      padding: 8px 18px;
+    }
+
+    .nav-links {
+      order: 3;
+      width: 100%;
+      display: flex;
+      gap: 16px;
+      margin-top: 12px;
+      overflow-x: auto;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    #hero {
+      height: 88vh;
+      min-height: 620px;
+    }
+
+    .hero-bg { background-position: 68% center; }
+
+    .hero-content {
+      padding: 0 8vw;
+      max-width: 100%;
+      transform: translateY(40px);
+    }
+
+    .hero-tagline { white-space: normal; }
+
+    .concept-grid, .projects-grid, .program-layout, #vision, #profile {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    section, #brand, #concept, #program, #projects, #vision, #profile, #contact {
+      padding: 60px 6vw !important;
+    }
+
+    footer {
+      flex-direction: column;
+      text-align: center;
+      gap: 20px;
+    }
+
+    .footer-produced { text-align: center; }
+  }
 </style>
 </head>
 
 <body>
 
+<nav id="nav">
+  <a href="#" id="nav-brand">Edo<span style="font-family:'Noto Serif JP',serif; font-weight:300;">-</span>cation</a>
+  <ul class="nav-links">
+    <li><a href="#concept">Concept</a></li>
+    <li><a href="#program">Program</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#profile">Profile</a></li>
+    <li><a href="index.html" class="nav-lang">JP</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Contact</a>
+</nav>
+
 <section id="hero">
   <div class="hero-bg"></div>
-
   <div class="hero-content">
-    <p class="hero-sub">Edo-cation</p>
-    <p class="hero-tagline">江戸に学び、楽しむとき。</p>
-    <p class="hero-produced">produced by うつくしいにっぽん</p>
+    <p class="hero-sub">Edo<span style="font-family:'Noto Serif JP',serif; font-weight:300;">-</span>cation</p>
+    <p class="hero-tagline">A time to learn and delight in Edo.</p>
+    <p class="hero-produced">produced by utsukushii nippon</p>
   </div>
-
   <div class="hero-scroll">
     <div class="scroll-line"></div>
     <span class="scroll-label">Scroll</span>
   </div>
 </section>
 
-<section id="contact">
-  <p class="contact-intro">お問い合わせはこちら</p>
+<div class="gold-rule"></div>
 
-  <form class="contact-form">
-    <input class="form-input" placeholder="お名前">
-    <input class="form-input" placeholder="メール">
-    <textarea class="form-textarea" placeholder="内容"></textarea>
-    <button class="form-submit">Send</button>
-  </form>
+<section id="brand">
+  <div class="brand-text reveal">
+    <p class="section-label">Brand</p>
+    <div class="brand-equation-row">
+      <p class="brand-equation">Edo Culture　×　Education　＝</p>
+      <img src="uploads/img_logo.png" alt="Edo-cation" class="brand-logo-illust reveal reveal-d2">
+    </div>
+  </div>
 </section>
+
+<div class="gold-rule"></div>
+
+<section id="concept">
+  <p class="section-label reveal">Concept</p>
+  <div class="concept-grid">
+    <div class="concept-card reveal reveal-d1">
+      <div class="concept-img-wrap">
+        <img src="uploads/2.png" alt="Ukiyo-e">
+      </div>
+      <p class="concept-num">01</p>
+      <h3 class="concept-card-title">Beyond Barriers</h3>
+      <p class="concept-card-body">Customized workshops and events dissolve the psychological distance between modern life and traditional Edo culture, making it accessible and deeply personal.</p>
+    </div>
+
+    <div class="concept-card reveal reveal-d2">
+      <div class="concept-img-wrap">
+        <img src="uploads/1.png" alt="Traditional culture">
+      </div>
+      <p class="concept-num">02</p>
+      <h3 class="concept-card-title">Learning from Masters</h3>
+      <p class="concept-card-body">Japanese culture has been passed down through oral tradition. Here, you hear directly from the living bearers of Edo's arts — not from textbooks.</p>
+      <p style="margin-top:16px; font-size:14px; letter-spacing:0.1em;"><a href="https://youtu.be/sfbS5Ghsp34?si=AffOQGlabF8iKRx-" target="_blank" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold); padding-bottom:2px;">Watch the video</a></p>
+    </div>
+
+    <div class="concept-card reveal reveal-d3">
+      <div class="concept-img-wrap">
+        <img src="uploads/img_kimono.jpg" alt="Kimono">
+      </div>
+      <p class="concept-num">03</p>
+      <h3 class="concept-card-title">An Immersive Experience</h3>
+      <p class="concept-card-body">Through hands-on workshops, you engage all five senses in a truly immersive encounter with Edo culture.</p>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<section id="program">
+  <div class="program-layout">
+    <div class="program-text reveal">
+      <p class="section-label">Program</p>
+      <h3 class="program-heading">Unique Elegance</h3>
+      <p class="program-copy">
+        When we create a gathering, what matters most is uniqueness and refinement. We bring together the arts of <em>Nihon Buyo</em> classical dance, <em>Ukiyo-e</em> woodblock printing, tea ceremony, and <em>Rakugo</em> storytelling — weaving them into singular, once-in-a-lifetime experiences that gently guide the spirit toward the essence of Japanese culture.
+      </p>
+      <p class="program-note">* Please enquire for pricing details.</p>
+    </div>
+    <div class="program-right reveal reveal-d1">
+      <img src="uploads/a.png" alt="Performance" class="program-main-img" style="object-position: center top;">
+      <div class="program-sub-imgs">
+        <img src="uploads/img_wagashi.jpg" alt="Wagashi">
+        <img src="uploads/img_sensu.png" alt="Fan calligraphy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<section id="projects">
+  <p class="section-label reveal">Selected Projects</p>
+  <div class="projects-grid">
+    <div class="project-card reveal reveal-d1">
+      <img src="uploads/img_shodou.jpg" alt="Fan calligraphy" class="project-img">
+      <p class="project-date">2024.11</p>
+      <h3 class="project-title">Fan Calligraphy Workshop</h3>
+      <p class="project-body">An in-house cultural event for visiting executives of an international entertainment app company. A master calligrapher led a fan-surface brushwork session.</p>
+    </div>
+
+    <div class="project-card reveal reveal-d2">
+      <a href="https://youtube.com/shorts/J31BokeXgPQ?si=OcHU8wDnfEDLW2vI" target="_blank" style="display:block;">
+        <img src="uploads/3.png" alt="Nihon Buyo" class="project-img" style="object-position: center top;">
+      </a>
+      <p class="project-date">2025.7</p>
+      <h3 class="project-title"><a href="https://youtube.com/shorts/J31BokeXgPQ?si=OcHU8wDnfEDLW2vI" target="_blank" style="color:inherit; text-decoration:none; border-bottom:1px solid var(--gold); padding-bottom:2px;">Private Nihon Buyo Performance</a></h3>
+      <p class="project-body">A private performance of the classical dance "Keisei" staged in Yoshiwara — the very setting of the work — with live shamisen accompaniment and a lecture by a woodblock print atelier.</p>
+    </div>
+
+    <div class="project-card reveal reveal-d3">
+      <img src="uploads/img_yorukai.jpg" alt="Evening of Edo" class="project-img" onerror="this.src='uploads/img_kimono.jpg'">
+      <p class="project-date">2025.9</p>
+      <h3 class="project-title">Evening of Edo in Yanagibashi</h3>
+      <p class="project-body">Co-hosted with an international firm. Under the warm glow of andon lanterns powered by renewable energy, guests experienced the elegance of Edo culture along the Yanagibashi waterfront.</p>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<section id="vision">
+  <div class="vision-logo-wrap reveal">
+    <img src="uploads/aaa2.png" alt="utsukushii nippon" class="vision-logo">
+  </div>
+  <div class="vision-text reveal reveal-d2">
+    <p class="section-label">Our Vision</p>
+    <p class="vision-en">
+      "We want to invite you to unveil<br>
+      the depth and beauty of Japanese culture,<br>
+      connect with its spirituality<br>
+      and share your feelings<br>
+      with people around the world."
+    </p>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<section id="profile">
+  <img src="uploads/img_profile.jpg" alt="Keiko Yamamoto" class="profile-img reveal">
+  <div class="reveal reveal-d1">
+    <p class="profile-org">Founder, utsukushii nippon</p>
+    <h2 class="profile-name">山本　桂子</h2>
+    <p class="profile-name-en">Keiko Yamamoto</p>
+    <p class="profile-bio">
+      A graduate of Waseda University, Keiko began studying Nihon Buyo classical Japanese dance at age eight under Wakana Isanami, and later trained under the fourth Iemoto of the Wakana school, Wakana Isaburo. She obtained her teaching license in 2018 and leads a dance studio in Tokyo's Taito ward.<br><br>
+      Drawing on the aesthetic sensibility and deep knowledge of Japanese culture cultivated through dance, she produces and coordinates cultural events and workshops for international audiences.
+    </p>
+    <p class="profile-affil">
+      Member, Japan Dance Association<br>
+      Founder, utsukushii nippon
+    </p>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<section id="contact">
+  <div class="contact-inner">
+    <p class="section-label reveal">Contact</p>
+    <p class="contact-intro reveal">
+      For enquiries about events, workshops, press, or collaborations, please reach out via the form below.
+    </p>
+
+    <div class="contact-form reveal">
+      <a href="https://forms.gle/3B2RJUY4oDCR17Mc9" target="_blank" class="form-submit">Contact Form</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="uploads/img_logo.png" alt="Edo-cation" class="footer-logo">
+  <p class="footer-copy">© 2025 Edo-cation. All rights reserved.</p>
+  <p class="footer-produced">Edo-cation<br>produced by utsukushii nippon</p>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+const navBrand = document.getElementById('nav-brand');
+
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY > 60;
+  nav.classList.toggle('scrolled', scrolled);
+  navBrand.style.color = scrolled ? 'var(--ink)' : 'rgba(255,255,255,0.92)';
+});
+
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+reveals.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
