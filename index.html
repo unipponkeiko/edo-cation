@@ -121,8 +121,8 @@
   /* ─── HERO ─── */
   #hero {
     position: relative; height: 100svh; min-height: 600px;
-    display: flex; align-items: center;
-    overflow: hidden; flex-direction: column; justify-content: center;
+    display: flex; align-items: center; justify-content: flex-start;
+    overflow: hidden;
   }
   .hero-bg {
     position: absolute; inset: 0;
@@ -143,6 +143,8 @@
     position: relative; z-index: 2;
     padding: 0 10vw;
     max-width: 640px;
+    align-self: center;
+    margin-right: auto;
   }
   .hero-sub {
     font-family: 'Cormorant Garamond', serif;
