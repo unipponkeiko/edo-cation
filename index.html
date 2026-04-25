@@ -430,46 +430,26 @@
     .nav-hamburger { display: flex; }
 
     /* HERO */
-    #hero {
-      height: 100svh; min-height: 580px;
-      background: #1a1008;
-    }
-    .hero-bg {
-      background-position: center top;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-color: #1a1008;
-      height: 55%;
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      bottom: auto;
-    }
-    .hero-bg::after {
-      background: linear-gradient(
-        to bottom,
-        rgba(20,14,8,0.0) 50%,
-        rgba(20,14,8,1.0) 100%
-      );
-    }
+    #hero { height: 100svh; min-height: 580px; }
+    .hero-bg { background-position: 75% center; }
     .hero-content {
-      position: absolute;
-      bottom: 80px;
-      left: 0; right: 0;
-      z-index: 2;
-      padding: 0 7vw;
+      padding: 0 6vw;
       max-width: 100%;
       width: 100%;
+      position: absolute;
+      bottom: 80px;
+      left: 0;
     }
     .hero-sub {
-      font-size: 30px; margin-bottom: 14px; letter-spacing: 0.22em;
-      color: #fff;
+      font-size: 22px; margin-bottom: 12px;
+      letter-spacing: 0.18em; line-height: 1.4;
     }
     .hero-tagline {
-      font-size: 14px; letter-spacing: 0.25em; margin-bottom: 12px;
-      line-height: 2; color: rgba(255,255,255,0.78);
+      font-size: 12px; letter-spacing: 0.18em;
+      margin-bottom: 10px; line-height: 2;
     }
-    .hero-produced { font-size: 10px; letter-spacing: 0.22em; color: rgba(255,255,255,0.42); }
-    .hero-scroll { left: 7vw; bottom: 32px; }
+    .hero-produced { font-size: 10px; letter-spacing: 0.18em; }
+    .hero-scroll { left: 6vw; bottom: 28px; }
 
     /* SECTIONS — unified padding */
     #brand, #concept, #program, #projects, #vision, #profile, #contact {
